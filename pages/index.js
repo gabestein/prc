@@ -19,7 +19,7 @@ const Home = () => {
 				<title>Home</title>
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
-			<h1>Simple Budget</h1>
+			<h1>Simple Expenses</h1>
 			<ul>
 				{data.jobs.map((job) => {
 					return <li key={`job__${job.id}`}>{job.title}</li>;

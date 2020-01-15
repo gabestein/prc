@@ -1,7 +1,7 @@
 {
-  "name": "budget",
+  "name": "expenses",
   "version": "1.0.0",
-  "description": "A super simple budget.",
+  "description": "A super simple expense tracker and budgeter.",
   "repository": {
     "type" : "git",
     "url" : "https://github.com/gabestein/budget.git"
@@ -16,7 +16,7 @@
   },
   "keywords": [],
   "author": "Gabriel Stein <gabe@ghscommunications.com>",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "@apollo/react-hooks": "^3.1.3",
     "@blueprintjs/core": "^3.22.3",
