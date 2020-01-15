@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "A super simple expense tracker and budgeter.",
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/gabestein/budget.git"
+    "type": "git",
+    "url": "https://github.com/gabestein/budget.git"
   },
   "main": "index.js",
   "scripts": {
@@ -19,6 +19,7 @@
   "license": "MIT",
   "dependencies": {
     "@apollo/react-hooks": "^3.1.3",
+    "@auth0/nextjs-auth0": "^0.10.0",
     "@blueprintjs/core": "^3.22.3",
     "@types/react": "^16.9.17",
     "@zeit/next-css": "^1.0.1",
@@ -26,6 +27,7 @@
     "apollo-cache-inmemory": "^1.6.5",
     "apollo-client": "^2.6.8",
     "apollo-link-http": "^1.5.16",
+    "dotenv": "^8.2.0",
     "graphql": "^14.5.8",
     "graphql-tag": "^2.10.1",
     "isomorphic-unfetch": "^3.0.0",
