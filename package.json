@@ -11,6 +11,8 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
+    "deploy": "now",
+    "deploy:prod": "now --prod",
     "pretty": "prettier --write '**/*.js'",
     "lint": "eslint ."
   },

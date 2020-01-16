@@ -6,3 +6,4 @@ npm-debug.log
 out
 .env
 db/config.yaml
+now.json
