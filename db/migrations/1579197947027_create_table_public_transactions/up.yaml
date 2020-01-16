@@ -1,0 +1,12 @@
+- args:
+    sql: CREATE TABLE "public"."transactions"("transaction_id" text NOT NULL, "account_id"
+      text NOT NULL, "category" jsonb, "category_id" text NOT NULL, "name" text NOT
+      NULL, "amount" numeric NOT NULL, "iso_currency_code" text, "unofficial_currency_code"
+      text, "date" date NOT NULL, "authorized_date" date NOT NULL, "location" jsonb
+      NOT NULL, "pending" boolean NOT NULL, "pending_transaction_id" text, "account_owner"
+      text, PRIMARY KEY ("transaction_id") , UNIQUE ("transaction_id"));
+  type: run_sql
+- args:
+    name: transactions
+    schema: public
+  type: add_existing_table_or_view
