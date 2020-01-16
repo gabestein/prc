@@ -1,0 +1,2 @@
+admin_secret: hasura-admin-secret
+endpoint: https://expensebin.herokuapp.com
