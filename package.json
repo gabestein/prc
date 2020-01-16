@@ -11,6 +11,7 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
+    "console": "cd db && npx hasura console",
     "deploy": "now",
     "deploy:prod": "now --prod",
     "pretty": "prettier --write '**/*.js'",
