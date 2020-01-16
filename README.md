@@ -1,3 +1,11 @@
+# Setup
+1. Get now account
+1. Setup auth0
+1. Setup hasura (admin, webhook, etc.)
+1. Env config
+1. Deploy to prod
+1. Run
+
 # Deploy
 1. configure `now.json` and `.env` with right variables
 1. `npm install --save now`
@@ -20,3 +28,4 @@ https://deploy-preview-3095--hasura-docs.netlify.com/graphql/manual/migrations/e
 https://docs.hasura.io/1.0/graphql/manual/getting-started/heroku-simple.html
 https://docs.hasura.io/1.0/graphql/manual/hasura-cli/install-hasura-cli.html#install-through-npm
 https://docs.hasura.io/1.0/graphql/manual/migrations/new-database.html
+https://docs.hasura.io/1.0/graphql/manual/auth/authentication/webhook.html

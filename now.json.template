@@ -6,7 +6,8 @@
       "AUTH0_CLIENT_SECRET": "@auth0_client_secret",
       "REDIRECT_URI": "https://your-redirect-uri",
       "POST_LOGOUT_REDIRECT_URI": "https://your-logout-redirect-uri",
-      "SESSION_COOKIE_SECRET": "@session_cookie_secret"
+      "SESSION_COOKIE_SECRET": "@session_cookie_secret",
+      "GRAPHQL_URI": "https://your-graphql-domain"
     }
   },
   "env": {
@@ -15,6 +16,7 @@
     "AUTH0_CLIENT_SECRET": "@auth0_client_secret",
     "REDIRECT_URI": "https://your-redirect-uri",
     "POST_LOGOUT_REDIRECT_URI": "https://your-logout-redirect-uri",
-    "SESSION_COOKIE_SECRET": "@session_cookie_secret"
+    "SESSION_COOKIE_SECRET": "@session_cookie_secret",
+    "GRAPHQL_URI": "https://your-graphql-uri"
   }
 }

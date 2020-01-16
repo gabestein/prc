@@ -17,5 +17,8 @@ module.exports = withPlugins(
 	],
 	{
 		target: 'serverless',
+		env: {
+			GRAPHQL_URI: process.env.GRAPHQL_URI,
+		},
 	},
 );

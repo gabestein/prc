@@ -2,12 +2,12 @@ import Head from 'next/head';
 import { useQuery } from '@apollo/react-hooks';
 import PropTypes from 'prop-types';
 
-import JOBS_QUERY from '../graphql/jobs.query';
+import TRANSACTIONS_QUERY from '../graphql/transactions.query';
 import auth0 from '../utils/auth0';
 
 const Home = (props) => {
 	// Create a query hook
-	const { data, loading, error } = useQuery(JOBS_QUERY);
+	const { data, loading, error } = useQuery(TRANSACTIONS_QUERY);
 
 	if (loading) {
 		return <p>Loading...</p>;
@@ -32,8 +32,8 @@ const Home = (props) => {
 			)}
 			<h1>Simple Expenses</h1>
 			<ul>
-				{data.jobs.map((job) => {
-					return <li key={`job__${job.id}`}>{job.title}</li>;
+				{data.transactions.map((transaction) => {
+					return <li key={`job__${transaction.transaction_id}`}>{transaction.name}</li>;
 				})}
 			</ul>
 		</div>
