@@ -20,6 +20,7 @@ const getTokenFromServerCookie = async (req, res) => {
 
 // Export a HOC from next-with-apollo
 // Docs: https://www.npmjs.com/package/next-with-apollo
+// From: https://github.com/lfades/next-with-apollo/issues/38#issuecomment-464830974
 export default withApollo(
 	({ ctx, initialState }) => {
 		return new ApolloClient({
