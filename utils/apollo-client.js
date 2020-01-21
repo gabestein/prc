@@ -33,7 +33,7 @@ export default withApollo(
 					: await getTokenFromServerCookie(ctx.req, ctx.res);
 				operation.setContext({
 					headers: {
-						bearer: token ? `${token}` : '',
+						authorization: token ? `Bearer ${token}` : null,
 					},
 				});
 			},
