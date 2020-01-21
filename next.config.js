@@ -19,6 +19,7 @@ module.exports = withPlugins(
 		target: 'serverless',
 		env: {
 			GRAPHQL_URI: process.env.GRAPHQL_URI,
+			PLAID_PUBLIC_KEY: process.env.PLAID_PUBLIC_KEY,
 		},
 	},
 );
