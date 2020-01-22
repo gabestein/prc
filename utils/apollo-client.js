@@ -18,26 +18,29 @@ const getTokenFromServerCookie = async (req, res) => {
 	return accessToken;
 };
 
+export const initApolloClient = (ctx, initialState) => {
+	return new ApolloClient({
+		fetch,
+		uri: GRAPHQL_URI,
+		cache: new InMemoryCache().restore(initialState || {}),
+		request: async (operation) => {
+			const token = process.browser
+				? await getTokenFromLocalCookie()
+				: await getTokenFromServerCookie(ctx.req, ctx.res);
+			operation.setContext({
+				headers: {
+					authorization: token ? `Bearer ${token}` : null,
+				},
+			});
+		},
+	});
+};
 // Export a HOC from next-with-apollo
 // Docs: https://www.npmjs.com/package/next-with-apollo
 // From: https://github.com/lfades/next-with-apollo/issues/38#issuecomment-464830974
 export default withApollo(
 	({ ctx, initialState }) => {
-		return new ApolloClient({
-			fetch,
-			uri: GRAPHQL_URI,
-			cache: new InMemoryCache().restore(initialState || {}),
-			request: async (operation) => {
-				const token = process.browser
-					? await getTokenFromLocalCookie()
-					: await getTokenFromServerCookie(ctx.req, ctx.res);
-				operation.setContext({
-					headers: {
-						authorization: token ? `Bearer ${token}` : null,
-					},
-				});
-			},
-		});
+		return initApolloClient(ctx, initialState);
 	},
 	{ getDataFromTree: 'never' },
 );

@@ -1,4 +1,6 @@
 import plaid from 'plaid';
+import { initApolloClient } from '../../utils/apollo-client';
+import TRANSACTIONS_QUERY from '../../graphql/transactions.query';
 
 const plaidClient = new plaid.Client(
 	process.env.PLAID_CLIENT_ID,
@@ -13,7 +15,10 @@ export default async function getPlaidToken(req, res) {
 		plaidClient.exchangePublicToken(publicToken, function(err, plaidRes) {
 			const accessToken = plaidRes.access_token;
 			plaidClient.getAccounts(accessToken, function(err, accountRes) {
-				console.log(accountRes.accounts);
+				const apolloClient = initApolloClient({ req, res }, {});
+				apolloClient
+				.query({ query: TRANSACTIONS_QUERY })
+				.then((result) => console.log(result.data));
 				res.status(200);
 			});
 		});
