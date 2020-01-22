@@ -1,0 +1,27 @@
+- args:
+    role: user
+    table:
+      name: items
+      schema: public
+  type: drop_update_permission
+- args:
+    permission:
+      columns:
+      - access_token
+      - institution_id
+      - item_id
+      - name
+      - user_id
+      - date_created
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id
+      localPresets:
+      - key: ""
+        value: ""
+      set: {}
+    role: user
+    table:
+      name: items
+      schema: public
+  type: create_update_permission

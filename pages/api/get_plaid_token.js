@@ -11,22 +11,33 @@ const plaidClient = new plaid.Client(
 
 export default async function getPlaidToken(req, res) {
 	try {
-		const publicToken = JSON.parse(req.body).publicToken;
+		const {
+			publicToken,
+			// eslint-disable-next-line camelcase
+			institution: { name, institution_id },
+		} = JSON.parse(req.body);
 		plaidClient.exchangePublicToken(publicToken, function(err, plaidRes) {
-			const item = { itemId: plaidRes.item_id, accessToken: plaidRes.access_token };
+			const item = {
+				itemId: plaidRes.item_id,
+				accessToken: plaidRes.access_token,
+				name: name,
+				institutionId: institution_id,
+			};
 			plaidClient.getAccounts(item.accessToken, function(accountErr, accountRes) {
 				const { accounts } = accountRes;
 				accounts.forEach((account, key) => {
 					accounts[key].item_id = item.itemId;
 				});
-				console.log(accounts);
 				const apolloClient = initApolloClient({ req, res }, {});
 				apolloClient
+				/* eslint-disable */
+				// for some reason prettier can't figure out how to indent this?
 				.mutate({
 					mutation: ITEMS_MUTATION,
 					variables: { ...item, accountsInput: accounts },
 				})
 				.then((result) => console.log(result.data));
+				/* eslint-enable */
 				res.status(200);
 			});
 		});

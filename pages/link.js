@@ -3,9 +3,10 @@ import fetch from 'isomorphic-unfetch';
 import Layout from '../components/Layout';
 
 const handleOnSuccess = (token, metadata) => {
+	console.log(metadata);
 	fetch(`${process.env.APP_URI}/api/get_plaid_token`, {
 		method: 'post',
-		body: JSON.stringify({ publicToken: token }),
+		body: JSON.stringify({ publicToken: token, institution: metadata.institution }),
 	})
 	.then((res) => res.json())
 	.then((json) => console.log(json));
