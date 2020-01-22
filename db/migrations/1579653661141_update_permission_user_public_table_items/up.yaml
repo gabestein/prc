@@ -1,0 +1,17 @@
+- args:
+    permission:
+      allow_aggregations: false
+      columns:
+      - access_token
+      - item_id
+      - user_id
+      - date_created
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id
+      limit: null
+    role: user
+    table:
+      name: items
+      schema: public
+  type: create_select_permission

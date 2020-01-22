@@ -1,0 +1,30 @@
+- args:
+    role: user
+    table:
+      name: accounts
+      schema: public
+  type: drop_insert_permission
+- args:
+    permission:
+      check: {}
+      columns:
+      - account_id
+      - balances
+      - mask
+      - name
+      - official_name
+      - subtype
+      - type
+      - verification_status
+      localPresets:
+      - key: user_id
+        value: x-hasura-User-Id
+      - key: ""
+        value: ""
+      set:
+        user_id: x-hasura-User-Id
+    role: user
+    table:
+      name: accounts
+      schema: public
+  type: create_insert_permission

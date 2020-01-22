@@ -1,0 +1,9 @@
+- args:
+    sql: CREATE TABLE "public"."items"("access_token" text NOT NULL, "item_id" text
+      NOT NULL, "user_id" text, "date_created" timestamptz NOT NULL DEFAULT now(),
+      PRIMARY KEY ("item_id","access_token") );
+  type: run_sql
+- args:
+    name: items
+    schema: public
+  type: add_existing_table_or_view

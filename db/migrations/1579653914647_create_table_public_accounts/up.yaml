@@ -1,0 +1,10 @@
+- args:
+    sql: CREATE TABLE "public"."accounts"("accountId" text NOT NULL, "balances" jsonb
+      NOT NULL, "name" text NOT NULL, "mask" text, "official_name" text, "type" text
+      NOT NULL, "subtype" text NOT NULL, "verification_status" text NOT NULL, "user_id"
+      text NOT NULL, PRIMARY KEY ("accountId","user_id") , UNIQUE ("accountId"));
+  type: run_sql
+- args:
+    name: accounts
+    schema: public
+  type: add_existing_table_or_view

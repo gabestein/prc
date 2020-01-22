@@ -1,0 +1,7 @@
+- args:
+    sql: ALTER TABLE "public"."accounts" ALTER COLUMN "verification_status" DROP NOT
+      NULL;
+  type: run_sql
+- args:
+    sql: COMMENT ON COLUMN "public"."accounts"."verification_status" IS E''
+  type: run_sql

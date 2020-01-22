@@ -1,0 +1,15 @@
+- args:
+    sql: ALTER TABLE "public"."accounts" ALTER COLUMN "date_created" TYPE timestamptz;
+  type: run_sql
+- args:
+    sql: ALTER TABLE "public"."accounts" ALTER COLUMN "date_created" DROP DEFAULT;
+  type: run_sql
+- args:
+    sql: ALTER TABLE "public"."accounts" ALTER COLUMN "date_created" DROP NOT NULL;
+  type: run_sql
+- args:
+    sql: COMMENT ON COLUMN "public"."accounts"."date_created" IS E''
+  type: run_sql
+- args:
+    sql: alter table "public"."accounts" rename column "date_created" to "date_last_checked";
+  type: run_sql

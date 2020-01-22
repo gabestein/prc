@@ -1,0 +1,7 @@
+- args:
+    name: item
+    new_name: account_item
+    table:
+      name: accounts
+      schema: public
+  type: rename_relationship

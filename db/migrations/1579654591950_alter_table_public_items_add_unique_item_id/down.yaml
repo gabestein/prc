@@ -1,0 +1,3 @@
+- args:
+    sql: alter table "public"."items" drop constraint "items_item_id_key";
+  type: run_sql

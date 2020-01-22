@@ -1,6 +1,6 @@
 import plaid from 'plaid';
 import { initApolloClient } from '../../utils/apollo-client';
-import TRANSACTIONS_QUERY from '../../graphql/transactions.query';
+import ITEMS_MUTATION from '../../graphql/items.mutation';
 
 const plaidClient = new plaid.Client(
 	process.env.PLAID_CLIENT_ID,
@@ -13,11 +13,19 @@ export default async function getPlaidToken(req, res) {
 	try {
 		const publicToken = JSON.parse(req.body).publicToken;
 		plaidClient.exchangePublicToken(publicToken, function(err, plaidRes) {
-			const accessToken = plaidRes.access_token;
-			plaidClient.getAccounts(accessToken, function(err, accountRes) {
+			const item = { itemId: plaidRes.item_id, accessToken: plaidRes.access_token };
+			plaidClient.getAccounts(item.accessToken, function(accountErr, accountRes) {
+				const { accounts } = accountRes;
+				accounts.forEach((account, key) => {
+					accounts[key].item_id = item.itemId;
+				});
+				console.log(accounts);
 				const apolloClient = initApolloClient({ req, res }, {});
 				apolloClient
-				.query({ query: TRANSACTIONS_QUERY })
+				.mutate({
+					mutation: ITEMS_MUTATION,
+					variables: { ...item, accountsInput: accounts },
+				})
 				.then((result) => console.log(result.data));
 				res.status(200);
 			});
