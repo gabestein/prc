@@ -42,5 +42,5 @@ export default withApollo(
 	({ ctx, initialState }) => {
 		return initApolloClient(ctx, initialState);
 	},
-	{ getDataFromTree: 'never' },
+	// { getDataFromTree: 'never' },
 );
