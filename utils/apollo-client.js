@@ -7,15 +7,27 @@ import auth0 from './auth0';
 const GRAPHQL_URI = process.env.GRAPHQL_URI;
 
 const getTokenFromLocalCookie = async () => {
-	const res = await fetch('/api/token');
-	const { accessToken } = await res.json();
-	return accessToken;
+	try {
+		const res = await fetch('/api/token');
+		const { accessToken } = await res.json();
+		return accessToken;
+	} catch (err) {
+		return null;
+	}
 };
 
 const getTokenFromServerCookie = async (req, res) => {
-	const tokenCache = await auth0.tokenCache(req, res);
-	const { accessToken } = await tokenCache.getAccessToken();
-	return accessToken;
+	try {
+		const tokenCache = await auth0.tokenCache(req, res);
+		const { accessToken } = await tokenCache.getAccessToken();
+		return accessToken;
+	} catch (err) {
+		/* res.writeHead(302, {
+			Location: '/api/login',
+		});
+		res.end(); */
+		return null;
+	}
 };
 
 export const initApolloClient = (ctx, initialState) => {
