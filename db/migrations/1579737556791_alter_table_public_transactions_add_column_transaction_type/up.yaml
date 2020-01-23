@@ -1,0 +1,4 @@
+- args:
+    sql: ALTER TABLE "public"."transactions" ADD COLUMN "transaction_type" text NOT
+      NULL;
+  type: run_sql

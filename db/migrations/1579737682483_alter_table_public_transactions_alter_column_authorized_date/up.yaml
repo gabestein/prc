@@ -1,0 +1,7 @@
+- args:
+    sql: ALTER TABLE "public"."transactions" ALTER COLUMN "authorized_date" DROP NOT
+      NULL;
+  type: run_sql
+- args:
+    sql: COMMENT ON COLUMN "public"."transactions"."authorized_date" IS E''
+  type: run_sql
