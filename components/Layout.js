@@ -1,13 +1,16 @@
 import PropTypes from 'prop-types';
 import Header from './Header';
-import './base.scss';
 import UserContext from '../utils/user';
+
+import './base.scss';
 
 const Layout = (props) => (
 	<UserContext.Provider value={props.user}>
-		<div>
-			<Header />
-			{props.children}
+		<div className="layout">
+			<div className="container">
+				<Header />
+				{props.children}
+			</div>
 		</div>
 	</UserContext.Provider>
 );
