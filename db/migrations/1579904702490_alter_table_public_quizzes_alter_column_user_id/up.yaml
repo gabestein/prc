@@ -1,0 +1,6 @@
+- args:
+    sql: ALTER TABLE "public"."quizzes" DROP CONSTRAINT "quizzes_user_id_key"
+  type: run_sql
+- args:
+    sql: COMMENT ON COLUMN "public"."quizzes"."user_id" IS E''
+  type: run_sql

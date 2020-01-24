@@ -1,0 +1,18 @@
+- args:
+    permission:
+      allow_aggregations: false
+      columns:
+      - date_created
+      - expenses
+      - income
+      - people
+      - quiz_id
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id
+      limit: null
+    role: user
+    table:
+      name: quizzes
+      schema: public
+  type: create_select_permission

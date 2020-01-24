@@ -1,0 +1,24 @@
+- args:
+    permission:
+      allow_upsert: true
+      check:
+        user_id:
+          _eq: X-Hasura-User-Id
+      columns:
+      - date_created
+      - expenses
+      - income
+      - people
+      - quiz_id
+      localPresets:
+      - key: user_id
+        value: x-hasura-User-Id
+      - key: ""
+        value: ""
+      set:
+        user_id: x-hasura-User-Id
+    role: user
+    table:
+      name: quizzes
+      schema: public
+  type: create_insert_permission
