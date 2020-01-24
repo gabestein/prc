@@ -12,7 +12,19 @@
 }
 
 header.main {
+  .logo {
+    h1, h2 {
+      display: inline-block;
+    }
+    h2 {
+      margin-left: 1em;
+      font-size: 1em;
+      text-align: middle;
+    }
+  }
   nav.main ul {
+    padding: 0;
+    margin: 0;
     list-style: none;
     width: 100%;
     overflow: hidden;

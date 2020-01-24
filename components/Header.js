@@ -8,11 +8,14 @@ const Header = () => {
 	return (
 		<>
 			<Head>
-				<title>Really Simple Budget</title>
+				<title>Future</title>
 				<meta name="viewport" content="initial-scale=1.0, width=device-width" />
 			</Head>
 			<header className="main">
-				<h1>Really Simple Budget</h1>
+				<div className="logo">
+					<h1>Future</h1>
+					<h2>Pay yourself first.</h2>
+				</div>
 				<nav className="main">
 					<ul>
 						{user && user.nickname ? (
