@@ -1,8 +1,15 @@
 import { useQuery } from '@apollo/react-hooks';
+import { useContext } from 'react';
+import UserContext from '../utils/user';
 
 import TRANSACTIONS_QUERY from '../graphql/transactions.query';
 
 const Home = () => {
+	const user = useContext(UserContext);
+	if (!user) {
+		return <p>Please log in.</p>;
+	}
+
 	// Create a query hook
 	const { data, loading, error } = useQuery(TRANSACTIONS_QUERY);
 
@@ -11,8 +18,9 @@ const Home = () => {
 	}
 
 	if (error) {
-		return <p>Error: {JSON.stringify(error)}</p>;
+		return <pre>Error: {JSON.stringify(error)}</pre>;
 	}
+
 	return (
 		<div>
 			<ul>

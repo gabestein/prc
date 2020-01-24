@@ -11,15 +11,12 @@ class ExpenseApp extends App {
 		const { Component, pageProps, apollo, user } = this.props;
 		return (
 			<Layout user={user}>
-				{user && (
-					<ApolloProvider client={apollo}>
-						<Component
-							// eslint-disable-next-line react/jsx-props-no-spreading
-							{...pageProps}
-						/>
-					</ApolloProvider>
-				)}
-				{!user && <p>Hello, please log in.</p>}
+				<ApolloProvider client={apollo}>
+					<Component
+						// eslint-disable-next-line react/jsx-props-no-spreading
+						{...pageProps}
+					/>
+				</ApolloProvider>
 			</Layout>
 		);
 	}

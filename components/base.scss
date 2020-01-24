@@ -12,7 +12,15 @@
 }
 
 header.main {
-  margin-bottom: 2em;
+  nav.main ul {
+    list-style: none;
+    width: 100%;
+    overflow: hidden;
+    li {
+      margin-right: 1em;
+      float: left;
+    }
+  }
 }
 
 /* Extra small devices (phones, 600px and down) */

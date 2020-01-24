@@ -29,7 +29,7 @@ export async function fetchUser(req) {
 	} else {
 		try {
 			const session = await fetch('/api/session');
-			const { user } = await session.json();
+			const user = await session.json();
 			User = user;
 			return User;
 		} catch (err) {
