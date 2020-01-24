@@ -35,6 +35,14 @@ header.main {
   }
 }
 
+.journey {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 2em 0;
+  > div {
+    margin: 0 5em 0 0;
+  }
+}
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {}
 

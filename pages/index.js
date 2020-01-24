@@ -3,6 +3,7 @@ import { useContext } from 'react';
 import UserContext from '../utils/user';
 import Transaction from '../components/transaction/Transaction';
 import Summary from '../components/summary/Summary';
+import Accounts from '../components/accounts/Accounts';
 import TRANSACTIONS_QUERY from '../graphql/transactions.query';
 
 const Home = () => {
@@ -23,16 +24,21 @@ const Home = () => {
 	}
 
 	return (
-		<div className="transactions">
-			<Summary transactions={data.transactions} />
-			{data.transactions.map((transaction) => {
-				return (
-					<Transaction
-						key={`transaction__${transaction.transaction_id}`}
-						transaction={transaction}
-					/>
-				);
-			})}
+		<div>
+			<section className="journey">
+				<Summary transactions={data.transactions} />
+				<Accounts />
+			</section>
+			<section className="transactions">
+				{data.transactions.map((transaction) => {
+					return (
+						<Transaction
+							key={`transaction__${transaction.transaction_id}`}
+							transaction={transaction}
+						/>
+					);
+				})}
+			</section>
 		</div>
 	);
 };

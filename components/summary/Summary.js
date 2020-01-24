@@ -10,7 +10,7 @@ const Summary = (props) => {
 
 	return (
 		<div className="summary">
-			<h1>Summary</h1>
+			<h2>Summary</h2>
 			<div>Total Out: {formatCurrency(totalOut)}</div>
 			<div>Total In: {formatCurrency(totalIn)}</div>
 			<div>Net: {formatCurrency(net)}</div>
