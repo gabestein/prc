@@ -4,6 +4,7 @@ import UserContext from '../utils/user';
 import Transaction from '../components/transaction/Transaction';
 import Summary from '../components/summary/Summary';
 import Accounts from '../components/accounts/Accounts';
+import Quiz from '../components/quiz/Quiz';
 import TRANSACTIONS_QUERY from '../graphql/transactions.query';
 
 const Home = () => {
@@ -28,6 +29,7 @@ const Home = () => {
 			<section className="journey">
 				<Summary transactions={data.transactions} />
 				<Accounts />
+				<Quiz />
 			</section>
 			<section className="transactions">
 				{data.transactions.map((transaction) => {

@@ -1,8 +1,9 @@
 // import PropTypes from 'prop-types';
-import './accounts.scss';
 import { useQuery } from '@apollo/react-hooks';
 import ACCOUNTS_QUERY from '../../graphql/accounts.query';
 import Account from './Account';
+
+import './accounts.scss';
 
 const Accounts = (/* props */) => {
 	const { data, loading, error } = useQuery(ACCOUNTS_QUERY);
