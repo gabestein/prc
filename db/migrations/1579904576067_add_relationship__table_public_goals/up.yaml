@@ -1,0 +1,12 @@
+- args:
+    name: accounts_in_goal
+    table:
+      name: goals
+      schema: public
+    using:
+      foreign_key_constraint_on:
+        column: goal_id
+        table:
+          name: goal_accounts
+          schema: public
+  type: create_array_relationship

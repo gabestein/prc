@@ -1,0 +1,6 @@
+- args:
+    relationship: accounts_in_goal
+    table:
+      name: goals
+      schema: public
+  type: drop_relationship

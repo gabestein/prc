@@ -1,0 +1,14 @@
+- args:
+    sql: CREATE EXTENSION IF NOT EXISTS pgcrypto;
+  type: run_sql
+- args:
+    sql: CREATE TABLE "public"."goal_accounts"("goal_id" uuid NOT NULL, "account_id"
+      text NOT NULL, "user_id" text NOT NULL, "id" uuid NOT NULL DEFAULT gen_random_uuid(),
+      PRIMARY KEY ("id") , FOREIGN KEY ("account_id") REFERENCES "public"."accounts"("account_id")
+      ON UPDATE restrict ON DELETE restrict, FOREIGN KEY ("goal_id") REFERENCES "public"."goals"("goal_id")
+      ON UPDATE restrict ON DELETE restrict, UNIQUE ("id"));
+  type: run_sql
+- args:
+    name: goal_accounts
+    schema: public
+  type: add_existing_table_or_view
