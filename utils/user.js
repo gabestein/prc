@@ -5,15 +5,22 @@ import auth0 from './auth0';
 const UserContext = React.createContext(null);
 export default UserContext;
 
+let User;
+
 export async function fetchUser(req) {
+	if (User) {
+		return User;
+	}
 	// If we're on the server, get the user directly
 	if (typeof window === 'undefined') {
 		try {
 			const session = await auth0.getSession(req);
 			if (!session || !session.user) {
-				return null;
+				User = null;
+				return User;
 			}
-			return session.user;
+			User = session.user;
+			return User;
 		} catch (err) {
 			console.warn(err);
 			return err;
@@ -23,7 +30,8 @@ export async function fetchUser(req) {
 		try {
 			const session = await fetch('/api/session');
 			const { user } = await session.json();
-			return user;
+			User = user;
+			return User;
 		} catch (err) {
 			console.warn(err);
 			return err;

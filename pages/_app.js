@@ -19,6 +19,7 @@ class ExpenseApp extends App {
 						/>
 					</ApolloProvider>
 				)}
+				{!user && <p>Hello, please log in.</p>}
 			</Layout>
 		);
 	}

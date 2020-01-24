@@ -5,7 +5,7 @@ import UserContext from '../utils/user';
 const Header = () => {
 	const user = useContext(UserContext);
 	return (
-		<div>
+		<header className="main">
 			<Head>
 				<title>Really Simple Budget</title>
 				<meta name="viewport" content="initial-scale=1.0, width=device-width" />
@@ -19,7 +19,7 @@ const Header = () => {
 			) : (
 				<a href="/api/login">Login</a>
 			)}
-		</div>
+		</header>
 	);
 };
 
