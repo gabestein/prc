@@ -1,7 +1,8 @@
 import { useQuery } from '@apollo/react-hooks';
 import { useContext } from 'react';
 import UserContext from '../utils/user';
-
+import Transaction from '../components/transaction/Transaction';
+import Summary from '../components/summary/Summary';
 import TRANSACTIONS_QUERY from '../graphql/transactions.query';
 
 const Home = () => {
@@ -22,12 +23,16 @@ const Home = () => {
 	}
 
 	return (
-		<div>
-			<ul>
-				{data.transactions.map((transaction) => {
-					return <li key={`job__${transaction.transaction_id}`}>{transaction.name}</li>;
-				})}
-			</ul>
+		<div className="transactions">
+			<Summary transactions={data.transactions} />
+			{data.transactions.map((transaction) => {
+				return (
+					<Transaction
+						key={`transaction__${transaction.transaction_id}`}
+						transaction={transaction}
+					/>
+				);
+			})}
 		</div>
 	);
 };

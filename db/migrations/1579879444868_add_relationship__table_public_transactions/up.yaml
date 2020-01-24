@@ -1,0 +1,8 @@
+- args:
+    name: transaction_account
+    table:
+      name: transactions
+      schema: public
+    using:
+      foreign_key_constraint_on: account_id
+  type: create_object_relationship

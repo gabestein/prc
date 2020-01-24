@@ -1,0 +1,6 @@
+- args:
+    relationship: transaction_account
+    table:
+      name: transactions
+      schema: public
+  type: drop_relationship
