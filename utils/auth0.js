@@ -11,5 +11,6 @@ export default initAuth0({
 		cookieSecret: process.env.SESSION_COOKIE_SECRET,
 		cookieLifetime: 7200,
 		storeAccessToken: true,
+		storeIdToken: true,
 	},
 });

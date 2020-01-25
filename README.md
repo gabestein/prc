@@ -1,7 +1,7 @@
 # Setup
 1. Get now account
 1. Setup auth0
-1. Setup hasura (admin, webhook, etc.)
+1. Setup hasura (admin, jwt, etc.)
 1. Env config
 1. Deploy to prod
 1. Run
@@ -29,3 +29,4 @@ https://docs.hasura.io/1.0/graphql/manual/getting-started/heroku-simple.html
 https://docs.hasura.io/1.0/graphql/manual/hasura-cli/install-hasura-cli.html#install-through-npm
 https://docs.hasura.io/1.0/graphql/manual/migrations/new-database.html
 https://docs.hasura.io/1.0/graphql/manual/auth/authentication/webhook.html
+https://docs.hasura.io/1.0/graphql/manual/guides/integrations/auth0-jwt.html

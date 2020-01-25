@@ -9,18 +9,17 @@ const GRAPHQL_URI = process.env.GRAPHQL_URI;
 const getTokenFromLocalCookie = async () => {
 	try {
 		const res = await fetch('/api/token');
-		const { accessToken } = await res.json();
-		return accessToken;
+		const { idToken } = await res.json();
+		return idToken;
 	} catch (err) {
 		return null;
 	}
 };
 
-const getTokenFromServerCookie = async (req, res) => {
+const getTokenFromServerCookie = async (req) => {
 	try {
-		const tokenCache = await auth0.tokenCache(req, res);
-		const { accessToken } = await tokenCache.getAccessToken();
-		return accessToken;
+		const { idToken } = await auth0.getSession(req);
+		return idToken;
 	} catch (err) {
 		/* res.writeHead(302, {
 			Location: '/api/login',
