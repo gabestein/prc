@@ -10,6 +10,9 @@ const ACCOUNTS_QUERY = gql`
 			account_item {
 				name
 			}
+			account_assignments {
+				type
+			}
 		}
 	}
 `;

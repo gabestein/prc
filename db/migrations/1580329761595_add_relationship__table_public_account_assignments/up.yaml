@@ -1,0 +1,8 @@
+- args:
+    name: assignment_account
+    table:
+      name: account_assignments
+      schema: public
+    using:
+      foreign_key_constraint_on: account_id
+  type: create_object_relationship

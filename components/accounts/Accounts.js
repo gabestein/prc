@@ -19,7 +19,7 @@ const Accounts = (/* props */) => {
 		<div className="accounts">
 			<h2>Accounts</h2>
 			{data.accounts.map((account) => {
-				return <Account account={account} />;
+				return <Account key={`account__${account.account_id}`} account={account} />;
 			})}
 		</div>
 	);

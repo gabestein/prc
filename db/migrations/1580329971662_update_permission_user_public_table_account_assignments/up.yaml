@@ -1,0 +1,20 @@
+- args:
+    permission:
+      allow_upsert: true
+      check:
+        assignment_account:
+          user_id:
+            _eq: X-Hasura-User-Id
+      columns:
+      - account_id
+      - type
+      - assignment_id
+      localPresets:
+      - key: ""
+        value: ""
+      set: {}
+    role: user
+    table:
+      name: account_assignments
+      schema: public
+  type: create_insert_permission

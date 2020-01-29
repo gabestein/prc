@@ -18,18 +18,16 @@ const handleOnExit = (token, metadata) => {
 
 const Link = () => {
 	return (
-		<Layout>
-			<PlaidLink
-				clientName="Your app name"
-				env="sandbox"
-				product={['transactions']}
-				publicKey={process.env.PLAID_PUBLIC_KEY}
-				onExit={handleOnExit}
-				onSuccess={handleOnSuccess}
-			>
-				Open Link and connect your bank!
-			</PlaidLink>
-		</Layout>
+		<PlaidLink
+			clientName="Your app name"
+			env="sandbox"
+			product={['transactions']}
+			publicKey={process.env.PLAID_PUBLIC_KEY}
+			onExit={handleOnExit}
+			onSuccess={handleOnSuccess}
+		>
+			Open Link and connect your bank!
+		</PlaidLink>
 	);
 };
 

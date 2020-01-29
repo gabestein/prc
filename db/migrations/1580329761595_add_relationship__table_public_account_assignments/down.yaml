@@ -1,0 +1,6 @@
+- args:
+    relationship: assignment_account
+    table:
+      name: account_assignments
+      schema: public
+  type: drop_relationship

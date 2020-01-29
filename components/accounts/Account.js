@@ -5,7 +5,8 @@ const Account = (props) => {
 	const { account } = props;
 	return (
 		<div className="accounts">
-			{account.account_item.name} {account.name}: {formatCurrency(account.balances.current)}
+			{account.account_item.name} {account.name}: {formatCurrency(account.balances.current)} |{' '}
+			{account.account_assignments[0] ? account.account_assignments[0].type : ''}
 		</div>
 	);
 };

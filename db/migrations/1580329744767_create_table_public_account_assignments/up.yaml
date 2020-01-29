@@ -1,0 +1,13 @@
+- args:
+    sql: CREATE EXTENSION IF NOT EXISTS pgcrypto;
+  type: run_sql
+- args:
+    sql: CREATE TABLE "public"."account_assignments"("assignment_id" uuid NOT NULL
+      DEFAULT gen_random_uuid(), "account_id" text NOT NULL, "type" text NOT NULL,
+      PRIMARY KEY ("assignment_id") , FOREIGN KEY ("account_id") REFERENCES "public"."accounts"("account_id")
+      ON UPDATE restrict ON DELETE restrict, UNIQUE ("assignment_id"));
+  type: run_sql
+- args:
+    name: account_assignments
+    schema: public
+  type: add_existing_table_or_view

@@ -14,7 +14,7 @@ const Header = () => {
 			<header className="main">
 				<div className="logo">
 					<h1>Future</h1>
-					<h2>Pay yourself first.</h2>
+					<h2>Pay your future self first.</h2>
 				</div>
 				<nav className="main">
 					<ul>

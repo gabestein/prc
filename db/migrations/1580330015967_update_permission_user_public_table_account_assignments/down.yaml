@@ -1,0 +1,20 @@
+- args:
+    role: user
+    table:
+      name: account_assignments
+      schema: public
+  type: drop_select_permission
+- args:
+    permission:
+      allow_aggregations: false
+      columns: []
+      computed_fields: []
+      filter:
+        assignment_account:
+          user_id:
+            _eq: X-Hasura-User-Id
+    role: user
+    table:
+      name: account_assignments
+      schema: public
+  type: create_select_permission
