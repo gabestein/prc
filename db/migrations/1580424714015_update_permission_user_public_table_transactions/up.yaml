@@ -1,0 +1,35 @@
+- args:
+    permission:
+      columns:
+      - pending
+      - authorized_date
+      - date
+      - category
+      - json_dump
+      - location
+      - payment_channel
+      - payment_meta
+      - amount
+      - account_id
+      - account_owner
+      - category_id
+      - iso_currency_code
+      - name
+      - pending_transaction_id
+      - transaction_id
+      - transaction_type
+      - unofficial_currency_code
+      filter:
+        transaction_account:
+          account_item:
+            user_id:
+              _eq: X-Hasura-User-Id
+      localPresets:
+      - key: ""
+        value: ""
+      set: {}
+    role: user
+    table:
+      name: transactions
+      schema: public
+  type: create_update_permission

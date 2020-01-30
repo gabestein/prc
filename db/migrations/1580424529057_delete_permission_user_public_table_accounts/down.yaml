@@ -1,0 +1,22 @@
+- args:
+    permission:
+      allow_aggregations: false
+      columns:
+      - balances
+      - account_id
+      - item_id
+      - mask
+      - name
+      - official_name
+      - subtype
+      - type
+      - user_id
+      - verification_status
+      - date_last_checked
+      computed_fields: []
+      filter: {}
+    role: user
+    table:
+      name: accounts
+      schema: public
+  type: create_select_permission

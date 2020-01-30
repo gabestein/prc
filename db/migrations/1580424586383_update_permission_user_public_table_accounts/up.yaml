@@ -1,0 +1,26 @@
+- args:
+    permission:
+      columns:
+      - balances
+      - account_id
+      - item_id
+      - mask
+      - name
+      - official_name
+      - subtype
+      - type
+      - verification_status
+      - date_last_checked
+      filter:
+        account_item:
+          user_id:
+            _eq: X-Hasura-User-Id
+      localPresets:
+      - key: ""
+        value: ""
+      set: {}
+    role: user
+    table:
+      name: accounts
+      schema: public
+  type: create_update_permission

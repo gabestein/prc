@@ -1,0 +1,22 @@
+- args:
+    permission:
+      check: {}
+      columns:
+      - account_id
+      - balances
+      - item_id
+      - mask
+      - name
+      - official_name
+      - subtype
+      - type
+      - verification_status
+      localPresets:
+      - key: ""
+        value: ""
+      set: {}
+    role: user
+    table:
+      name: accounts
+      schema: public
+  type: create_insert_permission

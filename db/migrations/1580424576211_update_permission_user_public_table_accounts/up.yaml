@@ -1,0 +1,27 @@
+- args:
+    permission:
+      allow_upsert: true
+      check:
+        account_item:
+          user_id:
+            _eq: X-Hasura-User-Id
+      columns:
+      - account_id
+      - balances
+      - name
+      - mask
+      - official_name
+      - type
+      - subtype
+      - verification_status
+      - date_last_checked
+      - item_id
+      localPresets:
+      - key: ""
+        value: ""
+      set: {}
+    role: user
+    table:
+      name: accounts
+      schema: public
+  type: create_insert_permission

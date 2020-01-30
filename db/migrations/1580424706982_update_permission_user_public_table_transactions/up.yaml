@@ -1,0 +1,15 @@
+- args:
+    permission:
+      allow_aggregations: false
+      columns: []
+      filter:
+        transaction_account:
+          account_item:
+            user_id:
+              _eq: X-Hasura-User-Id
+      limit: null
+    role: user
+    table:
+      name: transactions
+      schema: public
+  type: create_select_permission

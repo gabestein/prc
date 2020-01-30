@@ -23,17 +23,19 @@ export default async function getTransactions(req, res) {
 	try {
 		const apolloClient = initApolloClient({ req, res }, {});
 		apolloClient.query({ query: ITEMS_QUERY }).then(({ data: { items } }) => {
-			plaidClient.getTransactions(
-				items[0].access_token,
-				thirtyDaysAgo,
-				today,
-				(transactionErr, transactionRes) => {
-					apolloClient.mutate({
-						mutation: TRANSACTIONS_MUTATION,
-						variables: { transactionsInput: transactionRes.transactions },
-					});
-				},
-			);
+			items.forEach((item) => {
+				plaidClient.getAllTransactions(
+					item.access_token,
+					thirtyDaysAgo,
+					today,
+					(transactionErr, transactionRes) => {
+						apolloClient.mutate({
+							mutation: TRANSACTIONS_MUTATION,
+							variables: { transactionsInput: transactionRes.transactions },
+						});
+					},
+				);
+			});
 			res.status(200).json('ok');
 		});
 	} catch (error) {
