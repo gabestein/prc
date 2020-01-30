@@ -21,6 +21,7 @@ module.exports = withPlugins(
 			GRAPHQL_URI: process.env.GRAPHQL_URI,
 			PLAID_PUBLIC_KEY: process.env.PLAID_PUBLIC_KEY,
 			APP_URI: process.env.APP_URI,
+			API_URI: process.env.API_URI,
 		},
 	},
 );

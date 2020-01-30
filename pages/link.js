@@ -23,6 +23,7 @@ const Link = () => {
 			env="sandbox"
 			product={['transactions']}
 			publicKey={process.env.PLAID_PUBLIC_KEY}
+			webhook={`${process.env.API_URI}/api/plaid_webhook`}
 			onExit={handleOnExit}
 			onSuccess={handleOnSuccess}
 		>

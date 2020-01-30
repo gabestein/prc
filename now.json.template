@@ -7,7 +7,10 @@
       "REDIRECT_URI": "https://your-redirect-uri",
       "POST_LOGOUT_REDIRECT_URI": "https://your-logout-redirect-uri",
       "SESSION_COOKIE_SECRET": "@session_cookie_secret",
-      "GRAPHQL_URI": "https://your-graphql-domain"
+      "GRAPHQL_URI": "https://your-graphql-domain",
+      "APP_URI":"http://your-app-uri",
+      "API_URI":"http://your-api-uri",
+      "PLAID_PUBLIC_KEY":"your-plaid-key"
     }
   },
   "env": {
@@ -17,6 +20,11 @@
     "REDIRECT_URI": "https://your-redirect-uri",
     "POST_LOGOUT_REDIRECT_URI": "https://your-logout-redirect-uri",
     "SESSION_COOKIE_SECRET": "@session_cookie_secret",
-    "GRAPHQL_URI": "https://your-graphql-uri"
+    "GRAPHQL_URI": "https://your-graphql-uri",
+    "APP_URI":"https://your-app-uri",
+    "API_URI":"https://your-api-uri",
+    "PLAID_PUBLIC_KEY":"your-plaid-key",
+    "PLAID_CLIENT_ID": "@plaid_client_id",
+    "PLAID_SECRET": "@plaid_secret"
   }
 }
