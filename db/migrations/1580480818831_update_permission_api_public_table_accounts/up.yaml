@@ -1,0 +1,21 @@
+- args:
+    permission:
+      allow_aggregations: false
+      columns:
+      - balances
+      - account_id
+      - item_id
+      - mask
+      - name
+      - official_name
+      - subtype
+      - type
+      - verification_status
+      - date_last_checked
+      filter: {}
+      limit: null
+    role: api
+    table:
+      name: accounts
+      schema: public
+  type: create_select_permission

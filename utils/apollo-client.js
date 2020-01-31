@@ -29,15 +29,19 @@ const getTokenFromServerCookie = async (req) => {
 	}
 };
 
-export const initApolloClient = (ctx, initialState) => {
+// todo: pass admin token info here for webhook requests...probably need to use m2m eventually
+export const initApolloClient = (ctx, initialState, authToken) => {
 	return new ApolloClient({
 		fetch,
 		uri: GRAPHQL_URI,
 		cache: new InMemoryCache().restore(initialState || {}),
 		request: async (operation) => {
-			const token = process.browser
-				? await getTokenFromLocalCookie()
-				: await getTokenFromServerCookie(ctx.req, ctx.res);
+			let token = authToken;
+			if (!authToken) {
+				token = process.browser
+					? await getTokenFromLocalCookie()
+					: await getTokenFromServerCookie(ctx.req, ctx.res);
+			}
 			operation.setContext({
 				headers: {
 					authorization: token ? `Bearer ${token}` : null,

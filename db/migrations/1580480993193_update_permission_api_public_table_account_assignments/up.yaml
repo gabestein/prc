@@ -1,0 +1,17 @@
+- args:
+    permission:
+      allow_upsert: true
+      check: {}
+      columns:
+      - assignment_id
+      - account_id
+      - type
+      localPresets:
+      - key: ""
+        value: ""
+      set: {}
+    role: api
+    table:
+      name: account_assignments
+      schema: public
+  type: create_insert_permission

@@ -1,0 +1,17 @@
+- args:
+    permission:
+      allow_aggregations: false
+      columns:
+      - access_token
+      - institution_id
+      - item_id
+      - name
+      - user_id
+      - date_created
+      filter: {}
+      limit: null
+    role: api
+    table:
+      name: items
+      schema: public
+  type: create_select_permission

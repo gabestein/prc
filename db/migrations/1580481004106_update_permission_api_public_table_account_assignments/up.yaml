@@ -1,0 +1,16 @@
+- args:
+    permission:
+      columns:
+      - account_id
+      - type
+      - assignment_id
+      filter: {}
+      localPresets:
+      - key: ""
+        value: ""
+      set: {}
+    role: api
+    table:
+      name: account_assignments
+      schema: public
+  type: create_update_permission

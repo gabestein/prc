@@ -43,6 +43,6 @@ export default async function getPlaidToken(req, res) {
 		});
 	} catch (error) {
 		console.error(error);
-		res.status(error.status || 400).end(error.message);
+		res.status(error.status || 500).end(error.message);
 	}
 }

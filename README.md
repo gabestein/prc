@@ -30,3 +30,7 @@ https://docs.hasura.io/1.0/graphql/manual/hasura-cli/install-hasura-cli.html#ins
 https://docs.hasura.io/1.0/graphql/manual/migrations/new-database.html
 https://docs.hasura.io/1.0/graphql/manual/auth/authentication/webhook.html
 https://docs.hasura.io/1.0/graphql/manual/guides/integrations/auth0-jwt.html
+https://auth0.com/docs/api-auth/tutorials/client-credentials
+https://auth0.com/docs/dashboard/guides/applications/update-grant-types
+https://auth0.com/docs/api-auth/config/using-the-auth0-dashboard
+https://auth0.com/docs/api-auth/tutorials/client-credentials/customize-with-hooks

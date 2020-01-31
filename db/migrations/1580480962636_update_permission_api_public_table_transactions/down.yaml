@@ -1,0 +1,6 @@
+- args:
+    role: api
+    table:
+      name: transactions
+      schema: public
+  type: drop_insert_permission
