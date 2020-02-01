@@ -30,14 +30,11 @@ export default async function getPlaidToken(req, res) {
 				});
 				const apolloClient = initApolloClient({ req, res }, {});
 				apolloClient
-				/* eslint-disable */
-				// for some reason prettier can't figure out how to indent this?
-				.mutate({
-					mutation: ITEMS_MUTATION,
-					variables: { ...item, accountsInput: accounts },
-				})
-				.then((result) => console.log(result.data));
-				/* eslint-enable */
+					.mutate({
+						mutation: ITEMS_MUTATION,
+						variables: { ...item, accountsInput: accounts },
+					})
+					.then((result) => console.log(result.data));
 				res.status(200);
 			});
 		});

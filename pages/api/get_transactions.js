@@ -6,11 +6,9 @@ import TRANSACTIONS_MUTATION from '../../graphql/transactions.mutation';
 
 const today = moment().format('YYYY-MM-DD');
 
-/* eslint-disable prettier/prettier */
 const thirtyDaysAgo = moment()
-.subtract(30, 'days')
-.format('YYYY-MM-DD');
-/* eslint-enable */
+	.subtract(30, 'days')
+	.format('YYYY-MM-DD');
 
 const plaidClient = new plaid.Client(
 	process.env.PLAID_CLIENT_ID,

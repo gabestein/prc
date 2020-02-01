@@ -1,8 +1,8 @@
 import gql from 'graphql-tag';
 
 const ITEMS_QUERY = gql`
-	query Items {
-		items {
+	query Items($itemId: String!) {
+		items(where: { item_id: { _eq: $itemId } }) {
 			item_id
 			name
 			access_token
