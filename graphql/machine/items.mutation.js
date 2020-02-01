@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 
-const ITEM_DATE_UPDATE = gql`
+const ITEMS_MUTATION = gql`
 	mutation update_items($itemId: String!, $dateLastChecked: timestamptz!) {
 		update_items(
 			where: { item_id: { _eq: $itemId } }
@@ -14,4 +14,4 @@ const ITEM_DATE_UPDATE = gql`
 	}
 `;
 
-export default ITEM_DATE_UPDATE;
+export default ITEMS_MUTATION;

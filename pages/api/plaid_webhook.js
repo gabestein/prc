@@ -61,19 +61,25 @@ async function updateTransactions(opts) {
 					{ count: transactionCount },
 					(transactionErr, transactionRes) => {
 						// then, upsert new stuff and add transactions
-						apolloClient.mutate({
-							mutation: TRANSACTIONS_MUTATION,
-							variables: { transactionsInput: transactionRes.transactions },
-						});
-						apolloClient.mutate({
-							mutation: ITEM_DATE_UPDATE,
-							variables: {
-								itemId: item.item_id,
-								dateLastChecked: moment()
-									.utc()
-									.format(),
-							},
-						});
+						apolloClient
+							.mutate({
+								mutation: TRANSACTIONS_MUTATION,
+								variables: { transactionsInput: transactionRes.transactions },
+							})
+							.then((transactionsRes) => {
+								if (transactionsRes.error) {
+									throw transactionsRes.error;
+								}
+								apolloClient.mutate({
+									mutation: ITEM_DATE_UPDATE,
+									variables: {
+										itemId: item.item_id,
+										dateLastChecked: moment()
+											.utc()
+											.format(),
+									},
+								});
+							});
 					},
 				);
 			});
