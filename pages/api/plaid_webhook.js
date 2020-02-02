@@ -58,14 +58,14 @@ async function removeTransactions(opts) {
 		}
 		return {};
 	} catch (error) {
-		console.warn(error);
+		console.error(error);
 		return error;
 	}
 }
 
+// TODO: refactor this mess
 // opts = { itemId:itemId, transactionCount:transactionCount, historical:bool }
 async function updateTransactions(opts) {
-	let returnError = false;
 	const { itemId, transactionCount, historical } = opts;
 	// check if item exists and last time we pulled it
 	try {
@@ -77,59 +77,44 @@ async function updateTransactions(opts) {
 			error,
 			data: { items },
 		} = query;
-		if (error) return error;
+		if (error) throw error;
 		if (items && items.length > 0) {
-			const promises = items.map(async (item) => {
-				const timeAgo = historical
-					? moment()
-							.utc()
-							.subtract(3, 'years')
-							.format('YYYY-MM-DD')
-					: moment(item.date_last_checked || new Date())
-							.utc()
-							.subtract(2, 'days')
-							.format('YYYY-MM-DD');
-				return plaidClient.getAllTransactions(
-					item.access_token,
-					timeAgo,
-					today,
-					{ count: transactionCount },
-					async (plaidError, plaidRes) => {
-						if (plaidError) throw plaidError;
-						// then, upsert new stuff and add transactions
-						const transactions = await apolloClient.mutate({
-							mutation: TRANSACTIONS_MUTATION,
-							variables: { transactionsInput: plaidRes.transactions },
-						});
-						if (transactions.error) throw transactions.error;
-						const updateItem = await apolloClient.mutate({
-							mutation: ITEM_DATE_UPDATE,
-							variables: {
-								itemId: item.item_id,
-								dateLastChecked: moment()
-									.utc()
-									.format(),
-							},
-						});
-						if (updateItem.error) throw updateItem.error;
-						return updateItem;
-					},
-				);
-			});
-			await Promise.all(promises)
-				.then((response) => {
-					console.log('resolves', response);
-					returnError = false;
-				})
-				.catch((promiseError) => {
-					console.warn(promiseError);
-					returnError = true;
+			const item = items[0];
+			const timeAgo = historical
+				? moment()
+						.utc()
+						.subtract(3, 'years')
+						.format('YYYY-MM-DD')
+				: moment(item.date_last_checked || new Date())
+						.utc()
+						.subtract(2, 'days')
+						.format('YYYY-MM-DD');
+			const plaidPromise = await plaidClient
+				.getAllTransactions(item.access_token, timeAgo, today, { count: transactionCount })
+				.then(async (plaidRes) => {
+					const transactions = await apolloClient.mutate({
+						mutation: TRANSACTIONS_MUTATION,
+						variables: { transactionsInput: plaidRes.transactions },
+					});
+					if (transactions.error) throw transactions.error;
+					const updateItem = await apolloClient.mutate({
+						mutation: ITEM_DATE_UPDATE,
+						variables: {
+							itemId: item.item_id,
+							dateLastChecked: moment()
+								.utc()
+								.format(),
+						},
+					});
+					if (updateItem.error) throw updateItem.error;
+					return updateItem;
 				});
+			return plaidPromise;
 		}
-		return !returnError;
+		return {};
 	} catch (error) {
-		console.warn(error);
-		return error;
+		console.error(error);
+		return Promise.reject(error);
 	}
 }
 
@@ -152,25 +137,29 @@ export default async function plaidWebhook(req, res) {
 			case 'TRANSACTIONS':
 				switch (webhook.webhook_code) {
 					case 'INITIAL_UPDATE' || 'DEFAULT_UPDATE':
-						console.log(
-							await updateTransactions({
-								itemId: webhook.item_id,
-								transactionCount: webhook.new_transactions,
-								historical: false,
-							}),
-						);
+						await updateTransactions({
+							itemId: webhook.item_id,
+							transactionCount: webhook.new_transactions,
+							historical: false,
+						}).catch((updateError) => {
+							throw updateError;
+						});
 						break;
 					case 'HISTORICAL_UPDATE':
 						await updateTransactions({
 							itemId: webhook.item_id,
 							transactionCount: webhook.new_transactions,
 							historical: true,
+						}).catch((updateError) => {
+							throw updateError;
 						});
 						break;
 					case 'TRANSACTIONS_REMOVED':
 						await removeTransactions({
 							itemId: webhook.item_id,
 							transactions: webhook.removed_transactions,
+						}).catch((updateError) => {
+							throw updateError;
 						});
 						break;
 					default:
@@ -184,6 +173,6 @@ export default async function plaidWebhook(req, res) {
 		res.status(200).send('ok');
 	} catch (error) {
 		console.error(error);
-		res.status(error.status || 500).end(error.message);
+		res.status(error.status || error.status_code || 500).end(error.message);
 	}
 }
