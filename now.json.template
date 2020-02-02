@@ -10,7 +10,8 @@
       "GRAPHQL_URI": "https://your-graphql-domain",
       "APP_URI":"http://your-app-uri",
       "API_URI":"http://your-api-uri",
-      "PLAID_PUBLIC_KEY":"your-plaid-key"
+      "PLAID_PUBLIC_KEY":"your-plaid-key",
+      "PLAID_WEBHOOK_KEY":"your-generated-webhook-key"
     }
   },
   "env": {
@@ -25,6 +26,7 @@
     "API_URI":"https://your-api-uri",
     "PLAID_PUBLIC_KEY":"your-plaid-key",
     "PLAID_CLIENT_ID": "@plaid_client_id",
-    "PLAID_SECRET": "@plaid_secret"
+    "PLAID_SECRET": "@plaid_secret",
+    "PLAID_WEBHOOK_KEY":"9Ps92FtniwXPKJ3sesf"
   }
 }

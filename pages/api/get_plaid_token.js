@@ -16,7 +16,8 @@ export default async function getPlaidToken(req, res) {
 			// eslint-disable-next-line camelcase
 			institution: { name, institution_id },
 		} = JSON.parse(req.body);
-		plaidClient.exchangePublicToken(publicToken, function(err, plaidRes) {
+		plaidClient.exchangePublicToken(publicToken, function(plaidErr, plaidRes) {
+			if (plaidErr) throw plaidErr;
 			const item = {
 				itemId: plaidRes.item_id,
 				accessToken: plaidRes.access_token,
@@ -24,6 +25,7 @@ export default async function getPlaidToken(req, res) {
 				institutionId: institution_id,
 			};
 			plaidClient.getAccounts(item.accessToken, function(accountErr, accountRes) {
+				if (accountErr) throw accountErr;
 				const { accounts } = accountRes;
 				accounts.forEach((account, key) => {
 					accounts[key].item_id = item.itemId;
@@ -34,8 +36,11 @@ export default async function getPlaidToken(req, res) {
 						mutation: ITEMS_MUTATION,
 						variables: { ...item, accountsInput: accounts },
 					})
-					.then((result) => console.log(result.data));
-				res.status(200);
+					.then((mutationRes) => {
+						if (mutationRes.error) throw mutationRes.error;
+						console.log(mutationRes);
+						res.status(200).send('ok');
+					});
 			});
 		});
 	} catch (error) {

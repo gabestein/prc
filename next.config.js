@@ -22,6 +22,7 @@ module.exports = withPlugins(
 			PLAID_PUBLIC_KEY: process.env.PLAID_PUBLIC_KEY,
 			APP_URI: process.env.APP_URI,
 			API_URI: process.env.API_URI,
+			PLAID_WEBHOOK_KEY: process.env.PLAID_WEBHOOK_KEY,
 		},
 	},
 );

@@ -14,13 +14,14 @@ const handleOnExit = (token, metadata) => {
 };
 
 const Link = () => {
+	console.log(process.env.PLAID_WEBHOOK_KEY);
 	return (
 		<PlaidLink
 			clientName="Your app name"
 			env="sandbox"
 			product={['transactions']}
 			publicKey={process.env.PLAID_PUBLIC_KEY}
-			webhook={`${process.env.API_URI}/api/plaid_webhook`}
+			webhook={`${process.env.APP_URI}/api/plaid_webhook?key=${process.env.PLAID_WEBHOOK_KEY}`}
 			onExit={handleOnExit}
 			onSuccess={handleOnSuccess}
 		>

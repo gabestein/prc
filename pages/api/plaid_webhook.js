@@ -121,6 +121,10 @@ async function updateTransactions(opts) {
 }
 
 export default async function plaidWebhook(req, res) {
+	if (!req.query.key || req.query.key !== process.env.PLAID_WEBHOOK_KEY) {
+		res.status(403).send('Access denied.');
+		return; // not sure why this is actually needed but hey
+	}
 	try {
 		const token = await getAuth0Token();
 		apolloClient = initApolloClient({ req, res }, {}, token);
@@ -162,8 +166,7 @@ export default async function plaidWebhook(req, res) {
 			default:
 				break;
 		}
-
-		res.status(200).json('ok');
+		res.status(200).send('ok');
 		//		const apolloClient = initApolloClient({ req, res }, {}, json.access_token);
 	} catch (error) {
 		console.error(error);

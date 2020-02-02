@@ -34,7 +34,7 @@ export default async function getTransactions(req, res) {
 					},
 				);
 			});
-			res.status(200).json('ok');
+			res.status(200).send('ok');
 		});
 	} catch (error) {
 		console.error(error);
