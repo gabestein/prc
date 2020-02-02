@@ -1,0 +1,6 @@
+- args:
+    sql: "\n             alter table \"public\".\"accounts\" drop constraint \"accounts_item_id_fkey\",\n
+      \            add constraint \"accounts_item_id_fkey\"\n             foreign
+      key (\"item_id\")\n             references \"public\".\"items\"\n             (\"item_id\")
+      on update restrict on delete cascade;\n      "
+  type: run_sql

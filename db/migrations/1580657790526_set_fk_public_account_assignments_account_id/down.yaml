@@ -1,0 +1,7 @@
+- args:
+    sql: "\n          alter table \"public\".\"account_assignments\" drop constraint
+      \"account_assignments_account_id_fkey\",\n          add constraint \"account_assignments_account_id_fkey\"\n
+      \         foreign key (\"account_id\")\n          references \"public\".\"accounts\"\n
+      \         (\"account_id\")\n          on update restrict\n          on delete
+      restrict;\n        "
+  type: run_sql
