@@ -54,17 +54,20 @@ async function removeTransactions(opts) {
 			});
 			const { removeError } = remove;
 			if (removeError) throw removeError;
+			return remove;
 		}
+		return {};
 	} catch (error) {
 		console.warn(error);
+		return error;
 	}
 }
 
 // opts = { itemId:itemId, transactionCount:transactionCount, historical:bool }
 async function updateTransactions(opts) {
+	let returnError = false;
 	const { itemId, transactionCount, historical } = opts;
 	// check if item exists and last time we pulled it
-
 	try {
 		const query = await apolloClient.query({
 			query: ITEMS_QUERY,
@@ -74,49 +77,59 @@ async function updateTransactions(opts) {
 			error,
 			data: { items },
 		} = query;
-		if (error) throw error;
+		if (error) return error;
 		if (items && items.length > 0) {
-			await Promise.all(
-				items.map(async (item) => {
-					const timeAgo = historical
-						? moment()
-								.utc()
-								.subtract(3, 'years')
-								.format('YYYY-MM-DD')
-						: moment(item.date_last_checked)
-								.utc()
-								.subtract(2, 'days')
-								.format('YYYY-MM-DD');
-					plaidClient.getAllTransactions(
-						item.access_token,
-						timeAgo,
-						today,
-						{ count: transactionCount },
-						(plaidError, plaidRes) => {
-							if (plaidError) throw plaidError;
-							// then, upsert new stuff and add transactions
-							const transactions = apolloClient.mutate({
-								mutation: TRANSACTIONS_MUTATION,
-								variables: { transactionsInput: plaidRes.transactions },
-							});
-							if (transactions.error) throw transactions.error;
-							const updateItem = apolloClient.mutate({
-								mutation: ITEM_DATE_UPDATE,
-								variables: {
-									itemId: item.item_id,
-									dateLastChecked: moment()
-										.utc()
-										.format(),
-								},
-							});
-							if (updateItem.error) throw updateItem.error;
-						},
-					);
-				}),
-			);
+			const promises = items.map(async (item) => {
+				const timeAgo = historical
+					? moment()
+							.utc()
+							.subtract(3, 'years')
+							.format('YYYY-MM-DD')
+					: moment(item.date_last_checked || new Date())
+							.utc()
+							.subtract(2, 'days')
+							.format('YYYY-MM-DD');
+				return plaidClient.getAllTransactions(
+					item.access_token,
+					timeAgo,
+					today,
+					{ count: transactionCount },
+					async (plaidError, plaidRes) => {
+						if (plaidError) throw plaidError;
+						// then, upsert new stuff and add transactions
+						const transactions = await apolloClient.mutate({
+							mutation: TRANSACTIONS_MUTATION,
+							variables: { transactionsInput: plaidRes.transactions },
+						});
+						if (transactions.error) throw transactions.error;
+						const updateItem = await apolloClient.mutate({
+							mutation: ITEM_DATE_UPDATE,
+							variables: {
+								itemId: item.item_id,
+								dateLastChecked: moment()
+									.utc()
+									.format(),
+							},
+						});
+						if (updateItem.error) throw updateItem.error;
+						return updateItem;
+					},
+				);
+			});
+			await Promise.all(promises)
+				.then((response) => {
+					console.log('resolves', response);
+					returnError = false;
+				})
+				.catch((promiseError) => {
+					console.warn(promiseError);
+					returnError = true;
+				});
 		}
+		return !returnError;
 	} catch (error) {
 		console.warn(error);
+		return error;
 	}
 }
 
@@ -139,21 +152,23 @@ export default async function plaidWebhook(req, res) {
 			case 'TRANSACTIONS':
 				switch (webhook.webhook_code) {
 					case 'INITIAL_UPDATE' || 'DEFAULT_UPDATE':
-						updateTransactions({
-							itemId: webhook.item_id,
-							transactionCount: webhook.new_transactions,
-							historical: false,
-						});
+						console.log(
+							await updateTransactions({
+								itemId: webhook.item_id,
+								transactionCount: webhook.new_transactions,
+								historical: false,
+							}),
+						);
 						break;
 					case 'HISTORICAL_UPDATE':
-						updateTransactions({
+						await updateTransactions({
 							itemId: webhook.item_id,
 							transactionCount: webhook.new_transactions,
 							historical: true,
 						});
 						break;
 					case 'TRANSACTIONS_REMOVED':
-						removeTransactions({
+						await removeTransactions({
 							itemId: webhook.item_id,
 							transactions: webhook.removed_transactions,
 						});
@@ -167,7 +182,6 @@ export default async function plaidWebhook(req, res) {
 				break;
 		}
 		res.status(200).send('ok');
-		//		const apolloClient = initApolloClient({ req, res }, {}, json.access_token);
 	} catch (error) {
 		console.error(error);
 		res.status(error.status || 500).end(error.message);
