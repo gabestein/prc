@@ -13,7 +13,7 @@ const Header = () => {
 			</Head>
 			<header className="main">
 				<div className="logo">
-					<h1>Future</h1>
+					<h1>Future {process.env.PLAID_ENV}</h1>
 					<h2>Pay your future self first.</h2>
 				</div>
 				<nav className="main">

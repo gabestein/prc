@@ -1,30 +1,30 @@
 {
   "version": 2,
-  "alias": ["futureyou-dev.now.sh"],
+  "alias": ["futureyou-sandbox.now.sh"],
   "build": {
     "env": {
       "AUTH0_DOMAIN": "@auth0_domain",
       "AUTH0_CLIENT_ID": "@auth0_client_id",
       "AUTH0_CLIENT_SECRET": "@auth0_client_secret",
-      "BASE_URI": "@dev_base_uri",
+      "BASE_URI": "@sandbox_base_uri",
       "SESSION_COOKIE_SECRET": "@session_cookie_secret",
-      "GRAPHQL_URI": "@dev_graphql_uri",
+      "GRAPHQL_URI": "@sandbox_graphql_uri",
       "PLAID_PUBLIC_KEY":"@plaid_public_key",
       "PLAID_WEBHOOK_KEY":"@plaid_webhook_key",
-      "PLAID_ENV":"development"
+      "PLAID_ENV": "sandbox"
     }
   },
   "env": {
     "AUTH0_DOMAIN": "@auth0_domain",
     "AUTH0_CLIENT_ID": "@auth0_client_id",
     "AUTH0_CLIENT_SECRET": "@auth0_client_secret",
-    "BASE_URI": "@dev_base_uri",
+    "BASE_URI": "@sandbox_base_uri",
     "SESSION_COOKIE_SECRET": "@session_cookie_secret",
-    "GRAPHQL_URI": "@dev_graphql_uri",
+    "GRAPHQL_URI": "@sandbox_graphql_uri",
     "PLAID_PUBLIC_KEY":"@plaid_public_key",
     "PLAID_CLIENT_ID": "@plaid_client_id",
-    "PLAID_SECRET": "@plaid_dev_secret",
+    "PLAID_SECRET": "@plaid_sandbox_secret",
     "PLAID_WEBHOOK_KEY":"@plaid_webhook_key",
-    "PLAID_ENV":"development"
+    "PLAID_ENV": "sandbox"
   }
 }

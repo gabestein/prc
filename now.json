@@ -11,7 +11,7 @@
       "GRAPHQL_URI": "@dev_graphql_uri",
       "PLAID_PUBLIC_KEY":"@plaid_public_key",
       "PLAID_WEBHOOK_KEY":"@plaid_webhook_key",
-      "PLAID_ENV":"development"
+      "PLAID_ENV": "development"
     }
   },
   "env": {
@@ -25,6 +25,6 @@
     "PLAID_CLIENT_ID": "@plaid_client_id",
     "PLAID_SECRET": "@plaid_dev_secret",
     "PLAID_WEBHOOK_KEY":"@plaid_webhook_key",
-    "PLAID_ENV":"development"
+    "PLAID_ENV": "development"
   }
 }

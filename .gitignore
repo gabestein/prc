@@ -5,6 +5,8 @@ DS_Store
 npm-debug.log
 out
 .env
+.env.sandbox
 .env.build
+.env.build.sandbox
 db/config.yaml
-now.json
+.now

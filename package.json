@@ -8,12 +8,16 @@
   },
   "main": "index.js",
   "scripts": {
-    "dev": "next",
-    "build": "next build",
-    "start": "next start",
+    "dev": "env NODE_ENV=development next",
+    "sandbox": "env NODE_ENV=sandbox next",
+    "build": "env NODE_ENV=production next build",
+    "start": "env NODE_ENV=production next start",
     "console": "cd db && npx hasura console",
+    "migrate:dev": "cd db && dotenv -e ../.env node migrate-dev.js",
     "deploy": "now",
-    "deploy:prod": "now --prod",
+    "deploy:prod": "now --local-config now.prod.json --prod",
+    "deploy:dev": "now && now alias futureyou.gabestein.now.sh futureyou-dev.now.sh",
+    "deploy:sandbox": "now --local-config=now.sandbox.json && now alias futureyou.gabestein.now.sh futureyou-sandbox.now.sh",
     "pretty": "prettier --write '**/*.js'",
     "lint": "eslint ."
   },
@@ -29,6 +33,7 @@
     "@zeit/next-sass": "^1.0.1",
     "apollo-boost": "^0.4.7",
     "dotenv": "^8.2.0",
+    "dotenv-flow": "^3.1.0",
     "graphql": "^14.5.8",
     "graphql-tag": "^2.10.1",
     "isomorphic-unfetch": "^3.0.0",
@@ -46,6 +51,7 @@
     "swr": "^0.1.16"
   },
   "devDependencies": {
+    "dotenv-cli": "^3.1.0",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-config-prettier": "^6.9.0",

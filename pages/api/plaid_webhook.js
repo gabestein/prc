@@ -130,7 +130,7 @@ export default async function plaidWebhook(req, res) {
 			process.env.PLAID_CLIENT_ID,
 			process.env.PLAID_SECRET,
 			process.env.PLAID_PUBLIC_KEY,
-			plaid.environments.sandbox,
+			plaid.environments[process.env.PLAID_ENV],
 		);
 		const webhook = req.body;
 		switch (webhook.webhook_type) {

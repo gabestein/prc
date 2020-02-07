@@ -2,6 +2,7 @@
 import { useQuery } from '@apollo/react-hooks';
 import ACCOUNTS_QUERY from '../../graphql/accounts.query';
 import Account from './Account';
+import Link from '../link/Link';
 
 import './accounts.scss';
 
@@ -21,6 +22,7 @@ const Accounts = (/* props */) => {
 			{data.accounts.map((account) => {
 				return <Account key={`account__${account.account_id}`} account={account} />;
 			})}
+			<Link />
 		</div>
 	);
 };
