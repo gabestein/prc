@@ -9,6 +9,7 @@ import '../components/base.scss';
 class ExpenseApp extends App {
 	render() {
 		const { Component, pageProps, apollo, user } = this.props;
+		console.log(user);
 		return (
 			<Layout user={user}>
 				<ApolloProvider client={apollo}>
