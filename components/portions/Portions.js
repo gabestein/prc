@@ -9,22 +9,40 @@ const Portions = (props) => {
 		<div className="portions">
 			<h2>Portions</h2>
 			<div className="amounts">
-				<div className="un">
-					<h3>Total Income</h3>
-					<p>{formatCurrency(portions.income)}</p>
+				<div className="income">
+					<h3>Income</h3>
+					<p>New Money: +{formatCurrency(portions.income)}</p>
 				</div>
 				<div className="wants">
-					<h3>Present You</h3>
-					<p>{formatCurrency(portions.wants)}</p>
+					<h3>
+						Just Because:{' '}
+						{Math.round(
+							-((portions.wants + portions.wantsPaybacks) / portions.income) * 100,
+						)}
+						%
+					</h3>
+					<p>Money spent: {formatCurrency(portions.wants)}</p>
+					<p>Paybacks: {formatCurrency(portions.wantsPaybacks)}</p>
 				</div>
 				<div className="needs">
-					<h3>Neccessities</h3>
-					<p>{formatCurrency(portions.needs)}</p>
+					<h3>
+						Normal Stuff:{' '}
+						{Math.round(
+							-((portions.needs + portions.needsPaybacks) / portions.income) * 100,
+						)}
+						%
+					</h3>
+					<p>Money spent: {formatCurrency(portions.needs)}</p>
+					<p>Paybacks: {formatCurrency(portions.needsPaybacks)}</p>
 				</div>
 				<div className="savings">
-					<h3>Future You</h3>
-					<p>Debt Payoff: {formatCurrency(portions.debt)}</p>
-					<p>New Money: {formatCurrency(portions.savings)}</p>
+					<h3>
+						Future You: {Math.round(Math.abs(portions.savings / portions.income) * 100)}
+						%
+					</h3>
+					<p>New Money: +{formatCurrency(portions.savings)}</p>
+					<p>Debt Payoff (wash): {formatCurrency(portions.payoffs)}</p>
+					<p>Internal Transfers (wash): {formatCurrency(portions.transfers)}</p>
 				</div>
 			</div>
 		</div>

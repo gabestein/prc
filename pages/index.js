@@ -38,7 +38,7 @@ const Home = () => {
 	const { transactions } = data;
 	// do manual sorting because apollo's cache doesn't seem to update sort order
 	transactions.sort((a, b) => {
-		if (!a.user_portion && b.user_portion) return -1;
+		if (a.user_portion < b.user_portion) return -1;
 		return 1;
 	});
 	return (

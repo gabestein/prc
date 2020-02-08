@@ -1,5 +1,12 @@
 import PropTypes from 'prop-types';
-import { Card, RadioGroup, Radio } from '@blueprintjs/core';
+import {
+	Card,
+	RadioGroup,
+	Radio,
+	Popover,
+	PopoverInteractionKind,
+	Position,
+} from '@blueprintjs/core';
 import moment from 'moment';
 import './transaction.scss';
 import { useState } from 'react';
@@ -7,6 +14,21 @@ import { useMutation } from '@apollo/react-hooks';
 import { formatCurrency } from '../../utils/helpers';
 import UPDATE_TRANSACTION_PORTION from '../../graphql/transactions.update_portion';
 
+const LabelTooltip = ({ label, content }) => {
+	return (
+		<span>
+			{label}
+			<Popover
+				interactionKind={PopoverInteractionKind.HOVER}
+				position={Position.TOP}
+				popoverClassName="bp3-popover-content-sizing"
+				content={<p>{content}</p>}
+			>
+				<span className="help">?</span>
+			</Popover>
+		</span>
+	);
+};
 const Transaction = (props) => {
 	const { transaction } = props;
 	let refund;
@@ -23,25 +45,106 @@ const Transaction = (props) => {
 				<div className="name">{transaction.name}</div>
 				<div className="category">{transaction.category[0]}</div>
 				<div className={`amount ${refund ? 'refund' : ''}`}>
-					{formatCurrency(transaction.amount)}
+					{refund ? `+` : '-'}
+					{formatCurrency(Math.abs(transaction.amount))}
 				</div>
 				<section className="controls">
-					<RadioGroup
-						inline={true}
-						selectedValue={portion}
-						onChange={(value) => {
-							setPortion(value.currentTarget.value);
-						}}
-					>
-						<Radio label="Income" value="income" />
-						<Radio label="Transfer" value="transfer" />
-						<Radio label="Debt Payoff" value="debt" />
-						<Radio label="Neccessities" value="needs" />
-						<Radio label="Present You" value="wants" />
-						<Radio label="Future You" value="savings" />
-					</RadioGroup>
+					{refund ? (
+						<RadioGroup
+							inline={true}
+							selectedValue={portion}
+							onChange={(value) => {
+								setPortion(value.currentTarget.value);
+							}}
+						>
+							<Radio
+								label={
+									<LabelTooltip
+										label="Income"
+										content="Money you made, from any source."
+									/>
+								}
+								value="income"
+							/>
+							<Radio
+								label={
+									<LabelTooltip
+										label="Internal Transfer"
+										content="Money that you moved from one of your accounts to another, including money you moved from an account to make a credit payment – these don't really count because they're from you to you."
+									/>
+								}
+								value="transfers"
+							/>
+							<Radio
+								label={
+									<LabelTooltip
+										label="Paybacks (Usual Stuff)"
+										content="Income that was a payback for money you spent on the usual stuff."
+									/>
+								}
+								value="needsPaybacks"
+							/>
+							<Radio
+								label={
+									<LabelTooltip
+										label="Paybacks (Just Because)"
+										content="Income that was a payback for money you spent for fun."
+									/>
+								}
+								value="wantsPaybacks"
+							/>
+						</RadioGroup>
+					) : (
+						<RadioGroup
+							inline={true}
+							selectedValue={portion}
+							onChange={(value) => {
+								setPortion(value.currentTarget.value);
+							}}
+						>
+							<Radio
+								label={
+									<LabelTooltip
+										label="Debt Payoff"
+										content="Payments made against debt – credit cards, student loans, etc."
+									/>
+								}
+								value="payoffs"
+							/>
+							<Radio
+								label={
+									<LabelTooltip
+										label="Normal Stuff"
+										content="Money you spent on the basics – housing, utilities, phone and internet, basic food, basic clothes, etc."
+									/>
+								}
+								value="needs"
+							/>
+							<Radio
+								label={
+									<LabelTooltip
+										label="Just Because"
+										content="Money you spent on things beyond the basics – fancy meals, fancy clothes, a trip, etc."
+									/>
+								}
+								value="wants"
+							/>
+							<Radio
+								label={
+									<LabelTooltip
+										label="Future You"
+										content="Payments you made to your future self – transfers to savings or stock accounts, that kind of thing."
+									/>
+								}
+								value="savings"
+							/>
+						</RadioGroup>
+					)}
+				</section>
+				<section className="button">
 					<button
 						type="submit"
+						disabled={transaction.user_portion === portion}
 						onClick={(e) => {
 							e.preventDefault();
 							updateTransaction({
@@ -65,6 +168,11 @@ const Transaction = (props) => {
 			</section>
 		</Card>
 	);
+};
+
+LabelTooltip.propTypes = {
+	label: PropTypes.string.isRequired,
+	content: PropTypes.string.isRequired,
 };
 
 Transaction.propTypes = {

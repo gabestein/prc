@@ -9,7 +9,11 @@ const TRANSACTIONS_QUERY = gql`
 	) {
 		transactions(
 			where: { _and: [{ date: { _gte: $startDate } }, { date: { _lte: $endDate } }] }
-			order_by: [{ user_portion: $userPortionOrder }, { date: $dateOrder }]
+			order_by: [
+				{ user_portion: $userPortionOrder }
+				{ date: $dateOrder }
+				{ transaction_id: desc }
+			]
 			limit: 1000
 		) {
 			transaction_id

@@ -1,6 +1,16 @@
 @import '../variables.scss';
 
 .transaction {
+  .hide {
+    display: none;
+  }
+  .help {
+    margin: 0 .25em;
+    padding: 0 .25em;
+    border: 1px dotted #ccc;
+    border-radius: 50%;
+    color: #ccc;
+  }
   margin: 1em 0;
   &.savings {
     background-color: $savings;
@@ -15,11 +25,12 @@
     margin-bottom: 1em;
     display: grid;
     grid-template-rows: 1.25em;
-    grid-template-columns: 1fr .5fr .5fr 1fr 2fr;
+    grid-template-columns: 1fr .75fr .5fr .5fr 2fr .25fr;
     grid-column-gap: 2em;
     justify-items: left;
     .name {
-      overflow: hidden;
+      word-break: break-word;
+      word-wrap: break-word;
     }
     .amount {
       color: red;
