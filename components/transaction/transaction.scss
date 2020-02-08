@@ -4,7 +4,7 @@
     margin-bottom: 1em;
     display: grid;
     grid-template-rows: 1.25em;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr .5fr .5fr 1fr 2fr;
     grid-column-gap: 2em;
     justify-items: left;
     .name {

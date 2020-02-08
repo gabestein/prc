@@ -8,6 +8,7 @@ const ACCOUNTS_QUERY = gql`
 			balances
 			type
 			account_item {
+				item_id
 				name
 			}
 			account_assignments {

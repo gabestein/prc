@@ -1,4 +1,4 @@
-import ApolloClient, { InMemoryCache } from 'apollo-boost';
+import ApolloClient, { InMemoryCache, defaultDataIdFromObject } from 'apollo-boost';
 import withApollo from 'next-with-apollo';
 import fetch from 'isomorphic-unfetch';
 import auth0 from './auth0';
@@ -34,7 +34,21 @@ export const initApolloClient = (ctx, initialState, authToken) => {
 	return new ApolloClient({
 		fetch,
 		uri: GRAPHQL_URI,
-		cache: new InMemoryCache().restore(initialState || {}),
+		cache: new InMemoryCache({
+			dataIdFromObject: (object) => {
+				const knownTypeIds = {
+					transactions: 'transaction',
+					accounts: 'account',
+					items: 'item',
+				};
+				if (knownTypeIds[object.__typename]) {
+					return `${object.__typename}_${
+						object[`${knownTypeIds[object.__typename]}_id`]
+					}`;
+				}
+				return defaultDataIdFromObject(object);
+			},
+		}).restore(initialState || {}),
 		request: async (operation) => {
 			let token = authToken;
 			if (!authToken) {

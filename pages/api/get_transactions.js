@@ -27,6 +27,7 @@ export default async function getTransactions(req, res) {
 					thirtyDaysAgo,
 					today,
 					(transactionErr, transactionRes) => {
+						console.log(transactionRes);
 						apolloClient.mutate({
 							mutation: TRANSACTIONS_MUTATION,
 							variables: { transactionsInput: transactionRes.transactions },

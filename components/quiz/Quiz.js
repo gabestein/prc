@@ -11,9 +11,6 @@ const Quiz = () => {
 	if (error) {
 		return <pre>Error: {JSON.stringify(error)}</pre>;
 	}
-
-	console.log(data);
-
 	return (
 		<div className="quiz">
 			<h2>Quiz</h2>
