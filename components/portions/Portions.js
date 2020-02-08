@@ -15,6 +15,10 @@ const Portions = (props) => {
 						<p>{formatCurrency(portions.null)}</p>
 					</div>
 				)}
+				<div className="wants">
+					<h3>Present You</h3>
+					<p>{formatCurrency(portions.wants)}</p>
+				</div>
 				<div className="needs">
 					<h3>Neccessities</h3>
 					<p>{formatCurrency(portions.needs)}</p>
@@ -22,10 +26,6 @@ const Portions = (props) => {
 				<div className="savings">
 					<h3>Future You</h3>
 					<p>{formatCurrency(portions.savings)}</p>
-				</div>
-				<div className="wants">
-					<h3>Present You</h3>
-					<p>{formatCurrency(portions.wants)}</p>
 				</div>
 			</div>
 		</div>
