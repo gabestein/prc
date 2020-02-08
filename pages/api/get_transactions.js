@@ -10,6 +10,10 @@ const thirtyDaysAgo = moment()
 	.subtract(30, 'days')
 	.format('YYYY-MM-DD');
 
+const twoYearsAgo = moment()
+	.subtract(2, 'years')
+	.format('YYYY-MM-DD');
+
 const plaidClient = new plaid.Client(
 	process.env.PLAID_CLIENT_ID,
 	process.env.PLAID_SECRET,
@@ -19,15 +23,15 @@ const plaidClient = new plaid.Client(
 
 export default async function getTransactions(req, res) {
 	try {
+		const period = req.query.period === 'historical' ? twoYearsAgo : thirtyDaysAgo;
 		const apolloClient = initApolloClient({ req, res }, {});
 		apolloClient.query({ query: ITEMS_QUERY }).then(({ data: { items } }) => {
 			items.forEach((item) => {
 				plaidClient.getAllTransactions(
 					item.access_token,
-					thirtyDaysAgo,
+					period,
 					today,
 					(transactionErr, transactionRes) => {
-						console.log(transactionRes);
 						apolloClient.mutate({
 							mutation: TRANSACTIONS_MUTATION,
 							variables: { transactionsInput: transactionRes.transactions },
