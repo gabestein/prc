@@ -33,6 +33,9 @@ const Transaction = (props) => {
 							setPortion(value.currentTarget.value);
 						}}
 					>
+						<Radio label="Income" value="income" />
+						<Radio label="Transfer" value="transfer" />
+						<Radio label="Debt Payoff" value="debt" />
 						<Radio label="Neccessities" value="needs" />
 						<Radio label="Present You" value="wants" />
 						<Radio label="Future You" value="savings" />

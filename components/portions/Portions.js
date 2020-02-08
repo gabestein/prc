@@ -9,12 +9,10 @@ const Portions = (props) => {
 		<div className="portions">
 			<h2>Portions</h2>
 			<div className="amounts">
-				{portions.null > 0 && (
-					<div className="un">
-						<h3>Unportioned</h3>
-						<p>{formatCurrency(portions.null)}</p>
-					</div>
-				)}
+				<div className="un">
+					<h3>Total Income</h3>
+					<p>{formatCurrency(portions.income)}</p>
+				</div>
 				<div className="wants">
 					<h3>Present You</h3>
 					<p>{formatCurrency(portions.wants)}</p>
@@ -25,7 +23,8 @@ const Portions = (props) => {
 				</div>
 				<div className="savings">
 					<h3>Future You</h3>
-					<p>{formatCurrency(portions.savings)}</p>
+					<p>Debt Payoff: {formatCurrency(portions.debt)}</p>
+					<p>New Money: {formatCurrency(portions.savings)}</p>
 				</div>
 			</div>
 		</div>

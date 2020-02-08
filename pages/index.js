@@ -15,8 +15,7 @@ const today = moment()
 	.endOf('month');
 const monthago = moment(today)
 	.utc()
-	.subtract(1, 'month')
-	.endOf('month');
+	.startOf('month');
 
 const Home = () => {
 	const user = useContext(UserContext);
