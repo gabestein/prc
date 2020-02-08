@@ -1,0 +1,21 @@
+@import '../variables.scss';
+.portions {
+  .amounts {
+    display: flex;
+    justify-content: space-evenly;
+    > div {
+      flex: 1;
+      padding: 1em;
+      margin: 1em;
+    }
+    .wants {
+      background-color: $wants;
+    }
+    .needs {
+      background-color: $needs;
+    }
+    .savings {
+      background-color: $savings;
+    }
+  }
+}

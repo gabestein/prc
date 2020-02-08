@@ -17,7 +17,7 @@ const Transaction = (props) => {
 	const [updateTransaction] = useMutation(UPDATE_TRANSACTION_PORTION);
 
 	return (
-		<Card interactive={true} className="transaction">
+		<Card interactive={true} className={`transaction ${transaction.user_portion}`}>
 			<section className="basics">
 				<div className="date">{moment(transaction.date).format('dddd MMMM Do, YYYY')}</div>
 				<div className="name">{transaction.name}</div>

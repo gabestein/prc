@@ -1,5 +1,16 @@
+@import '../variables.scss';
+
 .transaction {
   margin: 1em 0;
+  &.savings {
+    background-color: $savings;
+  }
+  &.needs {
+    background-color: $needs;
+  }
+  &.wants {
+    background-color: $wants;
+  }
   .basics {
     margin-bottom: 1em;
     display: grid;

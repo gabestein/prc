@@ -16,6 +16,14 @@ export function getTotalIn(transactions) {
 	}, 0);
 }
 
+export function getPortions(transactions) {
+	const portions = { wants: 0, needs: 0, savings: 0, null: 0 };
+	transactions.forEach((transaction) => {
+		portions[transaction.user_portion] += Math.abs(transaction.amount);
+	});
+	return portions;
+}
+
 export default function() {
 	return null;
 }

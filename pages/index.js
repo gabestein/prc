@@ -6,6 +6,7 @@ import Transaction from '../components/transaction/Transaction';
 import Summary from '../components/summary/Summary';
 import Accounts from '../components/accounts/Accounts';
 import Quiz from '../components/quiz/Quiz';
+import Portions from '../components/portions/Portions';
 import TRANSACTIONS_QUERY from '../graphql/transactions.query';
 
 const today = moment()
@@ -47,6 +48,9 @@ const Home = () => {
 				<Summary transactions={transactions} />
 				<Accounts />
 				<Quiz />
+			</section>
+			<section className="portions">
+				<Portions transactions={transactions} />
 			</section>
 			<section className="transactions">
 				{transactions.map((transaction) => {
