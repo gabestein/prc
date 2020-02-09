@@ -9,7 +9,7 @@ const Layout = (props) => (
 		<div className="layout">
 			<div className="container">
 				<Header />
-				{props.children}
+				<div className="content">{props.children}</div>
 			</div>
 		</div>
 	</UserContext.Provider>
