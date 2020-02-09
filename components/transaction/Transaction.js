@@ -70,7 +70,7 @@ const Transaction = (props) => {
 								label={
 									<LabelTooltip
 										label="Internal Transfer"
-										content="Money that you moved from one of your accounts to another, including money you moved from an account to make a credit payment – these don't really count because they're from you to you."
+										content="Money that you moved from one of your accounts to another, including payments into your credit accounts."
 									/>
 								}
 								value="transfers"
