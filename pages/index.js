@@ -1,5 +1,6 @@
 import { useQuery } from '@apollo/react-hooks';
 import { useContext } from 'react';
+import { useRouter } from 'next/router';
 import moment from 'moment';
 import UserContext from '../utils/user';
 import Transaction from '../components/transaction/Transaction';
@@ -7,15 +8,8 @@ import Summary from '../components/summary/Summary';
 import Accounts from '../components/accounts/Accounts';
 import Quiz from '../components/quiz/Quiz';
 import Portions from '../components/portions/Portions';
+import MonthSelector from '../components/monthSelector/MonthSelector';
 import TRANSACTIONS_QUERY from '../graphql/transactions.query';
-
-const today = moment()
-	.utc()
-	.subtract(1, 'month')
-	.endOf('month');
-const monthago = moment(today)
-	.utc()
-	.startOf('month');
 
 const Home = () => {
 	const user = useContext(UserContext);
@@ -23,9 +17,25 @@ const Home = () => {
 		return <p>Please log in.</p>;
 	}
 
+	let startDate;
+	let endDate;
+
+	const router = useRouter();
+	if (router.query.startDate && router.query.endDate) {
+		startDate = router.query.startDate;
+		endDate = router.query.endDate;
+	} else {
+		startDate = moment(endDate)
+			.utc()
+			.startOf('month')
+			.format('YYYY-MM-DD');
+		endDate = moment()
+			.utc()
+			.format('YYYY-MM-DD');
+	}
 	// Create a query hook
 	const { data, loading, error } = useQuery(TRANSACTIONS_QUERY, {
-		variables: { startDate: monthago, endDate: today },
+		variables: { startDate: startDate, endDate: endDate },
 	});
 
 	if (loading) {
@@ -50,6 +60,7 @@ const Home = () => {
 				<Quiz />
 			</section>
 			<section className="portions">
+				<MonthSelector current={endDate} />
 				<Portions transactions={transactions} />
 			</section>
 			<section className="transactions">
