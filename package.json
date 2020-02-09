@@ -19,7 +19,8 @@
     "deploy:dev": "now && now alias futureyou.gabestein.now.sh futureyou-dev.now.sh",
     "deploy:sandbox": "now --local-config=now.sandbox.json && now alias futureyou.gabestein.now.sh futureyou-sandbox.now.sh",
     "pretty": "prettier --write '**/*.js'",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "test": "jest --watch"
   },
   "keywords": [],
   "author": "Gabriel Stein <gabe@ghscommunications.com>",
@@ -51,16 +52,25 @@
     "swr": "^0.1.16"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^5.1.1",
+    "@testing-library/react": "^9.4.0",
+    "babel-jest": "^25.1.0",
     "dotenv-cli": "^3.1.0",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-config-prettier": "^6.9.0",
     "eslint-plugin-import": "^2.20.0",
+    "eslint-plugin-jest": "^23.7.0",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-react": "^7.17.0",
     "eslint-plugin-react-hooks": "^1.7.0",
     "hasura-cli": "^1.0.0",
-    "prettier": "^1.19.1"
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^25.1.0",
+    "prettier": "^1.19.1",
+    "react-test-renderer": "^16.12.0"
   }
 }

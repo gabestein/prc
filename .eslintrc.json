@@ -4,7 +4,7 @@
     "es6": true,
     "commonjs": true
   },
-  "extends": ["airbnb", "prettier"],
+  "extends": ["airbnb", "prettier", "plugin:jest/recommended", "plugin:jest/style"],
   "parserOptions": {
     "ecmaVersion": 9,
     "ecmaFeatures": {
@@ -12,7 +12,7 @@
     },
     "sourceType": "module"
   },
-  "plugins": ["react", "prettier"],
+  "plugins": ["react", "prettier", "jest"],
   "rules": {
     "arrow-spacing": 0,
     "arrow-parens": 0,
