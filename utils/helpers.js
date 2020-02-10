@@ -10,10 +10,12 @@ export function getTotalOut(transactions) {
 }
 
 export function getTotalIn(transactions) {
-	return transactions.reduce((total, transaction) => {
-		if (transaction.amount < 0) return total + transaction.amount;
-		return Math.abs(total);
-	}, 0);
+	return Math.abs(
+		transactions.reduce((total, transaction) => {
+			if (transaction.amount < 0) return total + transaction.amount;
+			return total;
+		}, 0),
+	);
 }
 
 export function getPortions(transactions) {
