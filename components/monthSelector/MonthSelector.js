@@ -42,7 +42,6 @@ const MonthSelector = (props) => {
 					onClick={() => {
 						router.push(
 							`${router.pathname}?startDate=${prevStartDate}&endDate=${prevEndDate}`,
-							{ shalow: true },
 						);
 					}}
 				>
@@ -55,7 +54,6 @@ const MonthSelector = (props) => {
 					onClick={() => {
 						router.push(
 							`${router.pathname}?startDate=${nextStartDate}&endDate=${nextEndDate}`,
-							{ shallow: true },
 						);
 					}}
 				>
