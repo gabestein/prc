@@ -1,0 +1,41 @@
+- args:
+    role: api
+    table:
+      name: transactions
+      schema: public
+  type: drop_update_permission
+- args:
+    permission:
+      columns:
+      - pending
+      - removed
+      - user_approved
+      - authorized_date
+      - date
+      - category
+      - json_dump
+      - location
+      - payment_channel
+      - payment_meta
+      - amount
+      - account_id
+      - account_owner
+      - category_id
+      - iso_currency_code
+      - name
+      - pending_transaction_id
+      - transaction_id
+      - transaction_type
+      - unofficial_currency_code
+      - user_notes
+      - user_portion
+      filter: {}
+      localPresets:
+      - key: ""
+        value: ""
+      set: {}
+    role: api
+    table:
+      name: transactions
+      schema: public
+  type: create_update_permission

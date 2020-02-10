@@ -1,0 +1,4 @@
+- args:
+    sql: ALTER TABLE "public"."transactions" ADD COLUMN "user_approved" boolean NOT
+      NULL DEFAULT FALSE;
+  type: run_sql
