@@ -1,0 +1,7 @@
+- args:
+    sql: alter table "public"."items" drop constraint "items_pkey";
+  type: run_sql
+- args:
+    sql: "alter table \"public\".\"items\"\n    add constraint \"items_pkey\" \n    primary
+      key ( \"user_id\", \"institution_id\", \"item_id\" );"
+  type: run_sql

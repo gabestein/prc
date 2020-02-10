@@ -23,7 +23,7 @@ async function getAuth0Token() {
 		method: 'post',
 		body: JSON.stringify({
 			grant_type: 'client_credentials',
-			audience: 'https://expensebin.now.sh/api/',
+			audience: `${process.env.API_URI || process.env.BASE_URI}`,
 			client_id: process.env.AUTH0_CLIENT_ID,
 			client_secret: process.env.AUTH0_CLIENT_SECRET,
 		}),
