@@ -13,7 +13,7 @@ const Quiz = () => {
 	}
 	return (
 		<div className="quiz">
-			<h2>Quiz</h2>
+			<h2>About You</h2>
 		</div>
 	);
 };
