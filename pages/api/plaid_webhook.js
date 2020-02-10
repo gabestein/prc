@@ -136,7 +136,8 @@ export default async function plaidWebhook(req, res) {
 		switch (webhook.webhook_type) {
 			case 'TRANSACTIONS':
 				switch (webhook.webhook_code) {
-					case 'INITIAL_UPDATE' || 'DEFAULT_UPDATE':
+					case 'INITIAL_UPDATE':
+					case 'DEFAULT_UPDATE':
 						await updateTransactions({
 							itemId: webhook.item_id,
 							transactionCount: webhook.new_transactions,
