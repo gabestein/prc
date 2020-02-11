@@ -6,7 +6,7 @@ import ITEMS_QUERY from '../../graphql/machine/items.query';
 import TRANSACTIONS_MUTATION, {
 	TRANSACTIONS_REMOVE_MUTATION,
 } from '../../graphql/machine/transactions.mutation';
-import ITEM_DATE_UPDATE from '../../graphql/machine/items.mutation';
+import ITEMS_MUTATION from '../../graphql/machine/items.mutation';
 
 const today = moment()
 	.utc()
@@ -34,6 +34,22 @@ async function getAuth0Token() {
 	return auth0Token;
 }
 
+// opts = { itemId:itemId, error:bool }
+async function updateItem(opts) {
+	const { itemId, error } = opts;
+	try {
+		const mutation = await apolloClient.mutate({
+			mutation: ITEMS_MUTATION,
+			variables: { itemId: itemId, error: error },
+		});
+		if (mutation.error) throw mutation.error;
+		return mutation;
+	} catch (itemError) {
+		console.error(itemError);
+		return itemError;
+	}
+}
+
 // opts = { itemId:itemId, transactions:[transactions], historical:bool }
 async function removeTransactions(opts) {
 	const { itemId, transactions } = opts;
@@ -52,8 +68,7 @@ async function removeTransactions(opts) {
 				mutation: TRANSACTIONS_REMOVE_MUTATION,
 				variables: { transactions: transactions },
 			});
-			const { removeError } = remove;
-			if (removeError) throw removeError;
+			if (remove.error) throw remove.error;
 			return remove;
 		}
 		return {};
@@ -97,8 +112,8 @@ async function updateTransactions(opts) {
 						variables: { transactionsInput: plaidRes.transactions },
 					});
 					if (transactions.error) throw transactions.error;
-					const updateItem = await apolloClient.mutate({
-						mutation: ITEM_DATE_UPDATE,
+					const updatedItem = await apolloClient.mutate({
+						mutation: ITEMS_MUTATION,
 						variables: {
 							itemId: item.item_id,
 							dateLastChecked: moment()
@@ -106,8 +121,8 @@ async function updateTransactions(opts) {
 								.format(),
 						},
 					});
-					if (updateItem.error) throw updateItem.error;
-					return updateItem;
+					if (updatedItem.error) throw updatedItem.error;
+					return updatedItem;
 				});
 			return plaidPromise;
 		}
@@ -134,6 +149,19 @@ export default async function plaidWebhook(req, res) {
 		);
 		const webhook = req.body;
 		switch (webhook.webhook_type) {
+			case 'ITEM':
+				switch (webhook.webhook_code) {
+					case 'ERROR':
+						await updateItem({
+							itemId: webhook.item_id,
+							error: true,
+						});
+						break;
+					default:
+						console.warn('unhandled webhook', webhook);
+						break;
+				}
+				break;
 			case 'TRANSACTIONS':
 				switch (webhook.webhook_code) {
 					case 'INITIAL_UPDATE':
@@ -169,6 +197,7 @@ export default async function plaidWebhook(req, res) {
 				}
 				break;
 			default:
+				console.warn('unhandled webhook', webhook);
 				break;
 		}
 		res.status(200).send('ok');

@@ -10,6 +10,7 @@ const ACCOUNTS_QUERY = gql`
 			account_item {
 				item_id
 				name
+				error
 			}
 			account_assignments {
 				type

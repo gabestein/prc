@@ -9,6 +9,7 @@ const ITEMS_QUERY = gql`
 			date_last_checked
 			user_id
 			institution_id
+			error
 			item_accounts {
 				account_id
 				name

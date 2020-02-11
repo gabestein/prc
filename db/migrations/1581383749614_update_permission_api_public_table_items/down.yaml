@@ -1,0 +1,25 @@
+- args:
+    role: api
+    table:
+      name: items
+      schema: public
+  type: drop_select_permission
+- args:
+    permission:
+      allow_aggregations: false
+      columns:
+      - access_token
+      - date_created
+      - date_last_checked
+      - error
+      - institution_id
+      - item_id
+      - name
+      - user_id
+      computed_fields: []
+      filter: {}
+    role: api
+    table:
+      name: items
+      schema: public
+  type: create_select_permission
