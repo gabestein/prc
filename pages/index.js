@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import moment from 'moment';
 import UserContext from '../utils/user';
 import Transaction from '../components/transaction/Transaction';
-import Summary from '../components/summary/Summary';
+import Goals from '../components/goals/Goals';
 import Accounts from '../components/accounts/Accounts';
 import Quiz from '../components/quiz/Quiz';
 import Portions from '../components/portions/Portions';
@@ -55,7 +55,7 @@ const Home = () => {
 	return (
 		<div>
 			<section className="journey">
-				<Summary transactions={transactions} />
+				<Goals transactions={transactions} />
 				<Accounts />
 				<Quiz />
 			</section>

@@ -1,0 +1,18 @@
+- args:
+    permission:
+      allow_aggregations: false
+      columns:
+      - goal_amount
+      - goal_accounts
+      - goal_type
+      - user_id
+      - goal_id
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id
+      limit: null
+    role: user
+    table:
+      name: goals
+      schema: public
+  type: create_select_permission

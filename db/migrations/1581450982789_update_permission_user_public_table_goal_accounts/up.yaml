@@ -1,0 +1,21 @@
+- args:
+    permission:
+      allow_upsert: true
+      check:
+        goal_account:
+          account_item:
+            user_id:
+              _eq: X-Hasura-User-Id
+      columns:
+      - goal_id
+      - account_id
+      - id
+      localPresets:
+      - key: ""
+        value: ""
+      set: {}
+    role: user
+    table:
+      name: goal_accounts
+      schema: public
+  type: create_insert_permission

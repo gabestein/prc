@@ -1,0 +1,26 @@
+- args:
+    role: user
+    table:
+      name: goals
+      schema: public
+  type: drop_insert_permission
+- args:
+    permission:
+      check:
+        user_id:
+          _eq: X-Hasura-User-Id
+      columns:
+      - goal_id
+      - user_id
+      - goal_type
+      - goal_amount
+      - goal_accounts
+      localPresets:
+      - key: ""
+        value: ""
+      set: {}
+    role: user
+    table:
+      name: goals
+      schema: public
+  type: create_insert_permission

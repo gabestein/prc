@@ -1,0 +1,3 @@
+- args:
+    sql: ALTER TABLE "public"."goal_accounts" DROP COLUMN "type";
+  type: run_sql

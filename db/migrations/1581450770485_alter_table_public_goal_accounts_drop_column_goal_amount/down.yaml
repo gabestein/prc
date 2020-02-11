@@ -1,0 +1,7 @@
+- args:
+    sql: ALTER TABLE "public"."goal_accounts" ADD COLUMN "goal_amount" numeric
+  type: run_sql
+- args:
+    sql: ALTER TABLE "public"."goal_accounts" ALTER COLUMN "goal_amount" DROP NOT
+      NULL
+  type: run_sql

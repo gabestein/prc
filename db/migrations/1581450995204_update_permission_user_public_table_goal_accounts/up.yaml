@@ -1,0 +1,20 @@
+- args:
+    permission:
+      columns:
+      - account_id
+      - goal_id
+      - id
+      filter:
+        goal_account:
+          account_item:
+            user_id:
+              _eq: X-Hasura-User-Id
+      localPresets:
+      - key: ""
+        value: ""
+      set: {}
+    role: user
+    table:
+      name: goal_accounts
+      schema: public
+  type: create_update_permission
