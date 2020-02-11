@@ -1,9 +1,8 @@
 import plaid from 'plaid';
 import { initApolloClient } from '../../utils/apollo-client';
 import ITEMS_MUTATION from '../../graphql/items.mutation';
+import ITEMS_QUERY from '../../graphql/items.query';
 
-console.log(plaid.environments[process.env.PLAID_ENV]);
-console.log(plaid.environments);
 const plaidClient = new plaid.Client(
 	process.env.PLAID_CLIENT_ID,
 	process.env.PLAID_SECRET,
@@ -17,7 +16,31 @@ export default async function getPlaidToken(req, res) {
 			publicToken,
 			// eslint-disable-next-line camelcase
 			institution: { name, institution_id },
+			accounts: newAccounts,
 		} = JSON.parse(req.body);
+		const apolloClient = initApolloClient({ req, res }, {});
+
+		// painfully check to make sure the user doesn't already have this institution added
+		const {
+			data: { items },
+		} = await apolloClient.query({ query: ITEMS_QUERY });
+		const matchedItems = [];
+		items.forEach((item) => {
+			// eslint-disable-next-line camelcase
+			if (item.institution_id === institution_id) matchedItems.push(item);
+		});
+		if (matchedItems.length > 0) {
+			const existingMasks = matchedItems.flatMap((matchedItem) => {
+				return matchedItem.item_accounts.map((matchedAccount) => {
+					return matchedAccount.mask;
+				});
+			});
+			const newMasks = newAccounts.map((account) => account.mask);
+			if (existingMasks.some((existingMask) => newMasks.includes(existingMask))) {
+				throw new Error('Account already exists');
+			}
+		}
+
 		plaidClient.exchangePublicToken(publicToken, function(plaidErr, plaidRes) {
 			if (plaidErr) throw plaidErr;
 			const item = {
@@ -32,7 +55,6 @@ export default async function getPlaidToken(req, res) {
 				accounts.forEach((account, key) => {
 					accounts[key].item_id = item.itemId;
 				});
-				const apolloClient = initApolloClient({ req, res }, {});
 				apolloClient
 					.mutate({
 						mutation: ITEMS_MUTATION,
@@ -40,7 +62,6 @@ export default async function getPlaidToken(req, res) {
 					})
 					.then((mutationRes) => {
 						if (mutationRes.error) throw mutationRes.error;
-						console.log(mutationRes);
 						res.status(200).send('ok');
 					});
 			});

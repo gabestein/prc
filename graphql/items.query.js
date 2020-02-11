@@ -7,9 +7,12 @@ const ITEMS_QUERY = gql`
 			name
 			access_token
 			date_last_checked
+			user_id
+			institution_id
 			item_accounts {
 				account_id
 				name
+				mask
 			}
 		}
 	}

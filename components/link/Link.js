@@ -5,7 +5,11 @@ import { Button } from '@blueprintjs/core';
 const handleOnSuccess = (token, metadata) => {
 	fetch(`${process.env.APP_URI}/api/get_plaid_token`, {
 		method: 'post',
-		body: JSON.stringify({ publicToken: token, institution: metadata.institution }),
+		body: JSON.stringify({
+			publicToken: token,
+			institution: metadata.institution,
+			accounts: metadata.accounts,
+		}),
 	}).then((res) => res.json());
 };
 
