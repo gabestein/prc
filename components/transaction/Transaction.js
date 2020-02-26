@@ -78,7 +78,7 @@ const Transaction = (props) => {
 							<Radio
 								label={
 									<LabelTooltip
-										label="Paybacks (Usual Stuff)"
+										label="Paybacks (Essentials)"
 										content="Income that was a payback for money you spent on the usual stuff."
 									/>
 								}
@@ -87,7 +87,7 @@ const Transaction = (props) => {
 							<Radio
 								label={
 									<LabelTooltip
-										label="Paybacks (Just Because)"
+										label="Paybacks (Treats)"
 										content="Income that was a payback for money you spent for fun."
 									/>
 								}
@@ -114,7 +114,7 @@ const Transaction = (props) => {
 							<Radio
 								label={
 									<LabelTooltip
-										label="Normal Stuff"
+										label="Essentials – Normal Stuff"
 										content="Money you spent on the basics – housing, utilities, phone and internet, basic food, basic clothes, etc."
 									/>
 								}
@@ -123,8 +123,17 @@ const Transaction = (props) => {
 							<Radio
 								label={
 									<LabelTooltip
-										label="Just Because"
-										content="Money you spent on things beyond the basics – fancy meals, fancy clothes, a trip, etc."
+										label="Essentials – Emergencies"
+										content="Money you spent on essentials that you didn't plan for – doctor's visit, appliance broke down, etc."
+									/>
+								}
+								value="unplannedNeeds"
+							/>
+							<Radio
+								label={
+									<LabelTooltip
+										label="Treats - Planned"
+										content="Money you planned to spend on fancy things like trips, massages, etc."
 									/>
 								}
 								value="wants"
@@ -132,11 +141,38 @@ const Transaction = (props) => {
 							<Radio
 								label={
 									<LabelTooltip
-										label="Future You"
-										content="Payments you made to your future self – transfers to savings or stock accounts, that kind of thing."
+										label="Treats - Just Because"
+										content="Money you spent spur of the moment on things beyond the basics – fancy meals, fancy clothes, a trip, etc."
+									/>
+								}
+								value="unplannedWants"
+							/>
+							<Radio
+								label={
+									<LabelTooltip
+										label="Future You - New"
+										content="Payments you made to your future self – usually transfers to savings."
 									/>
 								}
 								value="savings"
+							/>
+							<Radio
+								label={
+									<LabelTooltip
+										label="Future You - Deployed"
+										content="Future you money spent on a goal like a house or other investment."
+									/>
+								}
+								value="activeSavings"
+							/>
+							<Radio
+								label={
+									<LabelTooltip
+										label="Ignore"
+										content="Use rarely. This is almost always due to an expense that had to go through multiple accounts."
+									/>
+								}
+								value="ignore"
 							/>
 						</RadioGroup>
 					)}

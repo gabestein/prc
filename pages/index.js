@@ -55,7 +55,7 @@ const Home = () => {
 	return (
 		<div>
 			<section className="journey">
-				<Goals transactions={transactions} />
+				{/* <Goals transactions={transactions} /> */}
 				<Accounts />
 				<Quiz />
 			</section>

@@ -12,20 +12,20 @@
     color: #ccc;
   }
   margin: 1em 0;
-  &.savings {
+  &.savings, &.activeSavings, &.payoffs {
     background-color: $savings;
   }
-  &.needs {
+  &.needs, &.unplannedNeeds, &.needsPaybacks {
     background-color: $needs;
   }
-  &.wants {
+  &.wants, &.unplannedWants, &.wantsPaybacks {
     background-color: $wants;
   }
   .basics {
     margin-bottom: 1em;
     display: grid;
     grid-template-rows: 1.25em;
-    grid-template-columns: 1fr .75fr .5fr .5fr 2fr .25fr;
+    grid-template-columns: 1fr .75fr .5fr .5fr 5fr .25fr;
     grid-column-gap: 2em;
     justify-items: left;
     .name {

@@ -13,34 +13,59 @@ const Portions = (props) => {
 					<h3>Income</h3>
 					<p>New Money: +{formatCurrency(portions.income)}</p>
 				</div>
-				<div className="wants">
-					<h3>
-						Just Because:{' '}
-						{Math.round(
-							-((portions.wants + portions.wantsPaybacks) / portions.income) * 100,
-						)}
-						%
-					</h3>
-					<p>Money spent: {formatCurrency(portions.wants)}</p>
-					<p>Paybacks: {formatCurrency(portions.wantsPaybacks)}</p>
-				</div>
 				<div className="needs">
 					<h3>
-						Normal Stuff:{' '}
+						Essentials:{' '}
 						{Math.round(
-							-((portions.needs + portions.needsPaybacks) / portions.income) * 100,
+							-(
+								(portions.needs +
+									portions.unplannedNeeds +
+									portions.needsPaybacks) /
+								portions.income
+							) * 100,
 						)}
 						%
 					</h3>
-					<p>Money spent: {formatCurrency(portions.needs)}</p>
+					<p>Normal Stuff: {formatCurrency(portions.needs)}</p>
+					<p>Emergencies: {formatCurrency(portions.unplannedNeeds)}</p>
 					<p>Paybacks: {formatCurrency(portions.needsPaybacks)}</p>
+					<p>
+						Net:{' '}
+						{formatCurrency(
+							portions.needs + portions.unplannedNeeds + portions.needsPaybacks,
+						)}
+					</p>
+				</div>
+				<div className="wants">
+					<h3>
+						Treats:{' '}
+						{Math.round(
+							-(
+								(portions.wants +
+									portions.unplannedWants +
+									portions.wantsPaybacks) /
+								portions.income
+							) * 100,
+						)}
+						%
+					</h3>
+					<p>Planned Treats: {formatCurrency(portions.wants)}</p>
+					<p>Just Because: {formatCurrency(portions.unplannedWants)}</p>
+					<p>Paybacks: {formatCurrency(portions.wantsPaybacks)}</p>
+					<p>
+						Net:{' '}
+						{formatCurrency(
+							portions.wants + portions.unplannedWants + portions.wantsPaybacks,
+						)}
+					</p>
 				</div>
 				<div className="savings">
 					<h3>
 						Future You: {Math.round(Math.abs(portions.savings / portions.income) * 100)}
 						%
 					</h3>
-					<p>New Money: +{formatCurrency(portions.savings)}</p>
+					<p>New: +{formatCurrency(portions.savings)}</p>
+					<p>Deployed: +{formatCurrency(portions.activeSavings)}</p>
 					<p>Debt Payoff (wash): {formatCurrency(portions.payoffs)}</p>
 					<p>Internal Transfers (wash): {formatCurrency(portions.transfers)}</p>
 				</div>

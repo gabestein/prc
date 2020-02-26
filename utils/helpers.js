@@ -21,8 +21,11 @@ export function getTotalIn(transactions) {
 export function getPortions(transactions) {
 	const portions = {
 		wants: 0,
+		unplannedWants: 0,
 		needs: 0,
+		unplannedNeeds: 0,
 		savings: 0,
+		activeSavings: 0,
 		income: 0,
 		payoffs: 0,
 		transfers: 0,
@@ -38,7 +41,9 @@ export function getPortions(transactions) {
 	portions.wantsPaybacks = Math.abs(portions.wantsPaybacks);
 	portions.transfers = Math.abs(portions.transfers);
 	portions.wants = -portions.wants;
+	portions.unplannedWants = -portions.unplannedWants;
 	portions.needs = -portions.needs;
+	portions.unplannedNeeds = -portions.unplannedNeeds;
 	return portions;
 }
 
