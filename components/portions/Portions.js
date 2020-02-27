@@ -15,14 +15,17 @@ const Portions = (props) => {
 	const profile = data.users[0];
 	const { transactions } = props;
 	const portions = getPortions(transactions);
+	const expectedIncome = profile.income + profile.retirement;
 	return (
 		<div className="portions">
-			<h2>Portions</h2>
+			<h2>Monthly Dashboard</h2>
 			<div className="amounts">
 				<div className="income">
 					<h3>Income</h3>
-					<p>Earned: +{formatCurrency(portions.income)}</p>
-					<p>Expected: +{formatCurrency(profile.income)}</p>
+					<p>Earned Take-Home: +{formatCurrency(portions.income)}</p>
+					<p>Expected Take-Home: +{formatCurrency(profile.income)}</p>
+					<p>Expected Savings: +{formatCurrency(profile.retirement)}</p>
+					<p>Expected Total: +{formatCurrency(expectedIncome)}</p>
 				</div>
 				<div className="needs">
 					<h3>
@@ -32,10 +35,10 @@ const Portions = (props) => {
 								(portions.needs +
 									portions.unplannedNeeds +
 									portions.needsPaybacks) /
-								profile.income
+								expectedIncome
 							) * 100,
 						)}
-						%
+						%<span className="subtitle">Target: 50%</span>
 					</h3>
 					<p>Normal Stuff: {formatCurrency(portions.needs)}</p>
 					<p>Emergencies: {formatCurrency(portions.unplannedNeeds)}</p>
@@ -55,10 +58,10 @@ const Portions = (props) => {
 								(portions.wants +
 									portions.unplannedWants +
 									portions.wantsPaybacks) /
-								profile.income
+								expectedIncome
 							) * 100,
 						)}
-						%
+						%<span className="subtitle">Target: 30%</span>
 					</h3>
 					<p>Planned Treats: {formatCurrency(portions.wants)}</p>
 					<p>Just Because: {formatCurrency(portions.unplannedWants)}</p>
@@ -74,10 +77,10 @@ const Portions = (props) => {
 					<h3>
 						Future You:{' '}
 						{Math.round(
-							Math.abs((portions.savings + profile.retirement) / profile.income) *
+							Math.abs((portions.savings + profile.retirement) / expectedIncome) *
 								100,
 						)}
-						%
+						%<span className="subtitle">Target: 20%</span>
 					</h3>
 					<p>New: +{formatCurrency(portions.savings)}</p>
 					<p>Automatic: +{formatCurrency(profile.retirement)}</p>
