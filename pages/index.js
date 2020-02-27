@@ -6,7 +6,7 @@ import UserContext from '../utils/user';
 import Transaction from '../components/transaction/Transaction';
 import Goals from '../components/goals/Goals';
 import Accounts from '../components/accounts/Accounts';
-import Quiz from '../components/quiz/Quiz';
+import Profile from '../components/profile/Profile';
 import Portions from '../components/portions/Portions';
 import MonthSelector from '../components/monthSelector/MonthSelector';
 import TRANSACTIONS_QUERY from '../graphql/transactions.query';
@@ -57,7 +57,7 @@ const Home = () => {
 			<section className="journey">
 				{/* <Goals transactions={transactions} /> */}
 				<Accounts />
-				<Quiz />
+				<Profile />
 			</section>
 			<section className="portions">
 				<MonthSelector current={endDate} />

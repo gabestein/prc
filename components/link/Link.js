@@ -1,6 +1,5 @@
 import PlaidLink from 'react-plaid-link';
 import fetch from 'isomorphic-unfetch';
-import { Button } from '@blueprintjs/core';
 
 const handleOnSuccess = (token, metadata) => {
 	fetch(`${process.env.APP_URI}/api/get_plaid_token`, {
@@ -16,6 +15,7 @@ const handleOnSuccess = (token, metadata) => {
 const handleOnExit = (token, metadata) => {
 	console.log('exit');
 };
+
 const Link = () => {
 	return (
 		<PlaidLink
@@ -27,7 +27,7 @@ const Link = () => {
 			onExit={handleOnExit}
 			onSuccess={handleOnSuccess}
 		>
-			<Button type="button">Link new accounts</Button>
+			Link new accounts
 		</PlaidLink>
 	);
 };

@@ -1,8 +1,18 @@
 import PropTypes from 'prop-types';
+import { useQuery } from '@apollo/react-hooks';
 import './portions.scss';
 import { getPortions, formatCurrency } from '../../utils/helpers';
+import PROFILE_QUERY from '../../graphql/profile.query';
 
 const Portions = (props) => {
+	const { data, loading, error } = useQuery(PROFILE_QUERY);
+	if (loading) {
+		return <p>Loading...</p>;
+	}
+	if (error) {
+		return <pre>Error: {JSON.stringify(error)}</pre>;
+	}
+	const profile = data.users[0];
 	const { transactions } = props;
 	const portions = getPortions(transactions);
 	return (
@@ -11,7 +21,8 @@ const Portions = (props) => {
 			<div className="amounts">
 				<div className="income">
 					<h3>Income</h3>
-					<p>New Money: +{formatCurrency(portions.income)}</p>
+					<p>Earned: +{formatCurrency(portions.income)}</p>
+					<p>Expected: +{formatCurrency(profile.income)}</p>
 				</div>
 				<div className="needs">
 					<h3>
@@ -21,7 +32,7 @@ const Portions = (props) => {
 								(portions.needs +
 									portions.unplannedNeeds +
 									portions.needsPaybacks) /
-								portions.income
+								profile.income
 							) * 100,
 						)}
 						%
@@ -44,7 +55,7 @@ const Portions = (props) => {
 								(portions.wants +
 									portions.unplannedWants +
 									portions.wantsPaybacks) /
-								portions.income
+								profile.income
 							) * 100,
 						)}
 						%
@@ -61,10 +72,15 @@ const Portions = (props) => {
 				</div>
 				<div className="savings">
 					<h3>
-						Future You: {Math.round(Math.abs(portions.savings / portions.income) * 100)}
+						Future You:{' '}
+						{Math.round(
+							Math.abs((portions.savings + profile.retirement) / profile.income) *
+								100,
+						)}
 						%
 					</h3>
 					<p>New: +{formatCurrency(portions.savings)}</p>
+					<p>Automatic: +{formatCurrency(profile.retirement)}</p>
 					<p>Deployed: +{formatCurrency(portions.activeSavings)}</p>
 					<p>Debt Payoff (wash): {formatCurrency(portions.payoffs)}</p>
 					<p>Internal Transfers (wash): {formatCurrency(portions.transfers)}</p>

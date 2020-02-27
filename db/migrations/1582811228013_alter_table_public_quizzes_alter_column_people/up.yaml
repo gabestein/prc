@@ -1,0 +1,6 @@
+- args:
+    sql: ALTER TABLE ONLY "public"."quizzes" ALTER COLUMN "people" SET DEFAULT 1;
+  type: run_sql
+- args:
+    sql: COMMENT ON COLUMN "public"."quizzes"."people" IS E''
+  type: run_sql
