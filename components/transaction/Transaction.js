@@ -41,7 +41,14 @@ const Transaction = (props) => {
 	return (
 		<Card interactive={true} className={`transaction ${transaction.user_portion}`}>
 			<section className="basics">
-				<div className="date">{moment(transaction.date).format('dddd MMMM Do, YYYY')}</div>
+				<div className="details">
+					<p className="date">{moment(transaction.date).format('dddd MMMM Do, YYYY')}</p>
+					<p className="account">
+						{transaction.transaction_account.account_item.name}{' '}
+						{transaction.transaction_account.name}
+					</p>
+					<p className="type">{transaction.payment_channel}</p>
+				</div>
 				<div className="name">{transaction.name}</div>
 				<div className="category">{transaction.category[0]}</div>
 				<div className={`amount ${refund ? 'refund' : ''}`}>
@@ -65,6 +72,7 @@ const Transaction = (props) => {
 									/>
 								}
 								value="income"
+								className="income"
 							/>
 							<Radio
 								label={
@@ -74,6 +82,7 @@ const Transaction = (props) => {
 									/>
 								}
 								value="transfers"
+								className="other"
 							/>
 							<Radio
 								label={
@@ -83,6 +92,7 @@ const Transaction = (props) => {
 									/>
 								}
 								value="needsPaybacks"
+								className="needs"
 							/>
 							<Radio
 								label={
@@ -92,6 +102,7 @@ const Transaction = (props) => {
 									/>
 								}
 								value="wantsPaybacks"
+								className="wants"
 							/>
 						</RadioGroup>
 					) : (
@@ -110,6 +121,7 @@ const Transaction = (props) => {
 									/>
 								}
 								value="payoffs"
+								className="future"
 							/>
 							<Radio
 								label={
@@ -119,6 +131,7 @@ const Transaction = (props) => {
 									/>
 								}
 								value="needs"
+								className="needs"
 							/>
 							<Radio
 								label={
@@ -128,6 +141,7 @@ const Transaction = (props) => {
 									/>
 								}
 								value="unplannedNeeds"
+								className="needs"
 							/>
 							<Radio
 								label={
@@ -137,6 +151,7 @@ const Transaction = (props) => {
 									/>
 								}
 								value="wants"
+								className="wants"
 							/>
 							<Radio
 								label={
@@ -146,6 +161,7 @@ const Transaction = (props) => {
 									/>
 								}
 								value="unplannedWants"
+								className="wants"
 							/>
 							<Radio
 								label={
@@ -155,6 +171,7 @@ const Transaction = (props) => {
 									/>
 								}
 								value="savings"
+								className="future"
 							/>
 							<Radio
 								label={
@@ -164,6 +181,7 @@ const Transaction = (props) => {
 									/>
 								}
 								value="activeSavings"
+								className="future"
 							/>
 							<Radio
 								label={
@@ -173,6 +191,7 @@ const Transaction = (props) => {
 									/>
 								}
 								value="ignore"
+								className="other"
 							/>
 						</RadioGroup>
 					)}
@@ -194,13 +213,6 @@ const Transaction = (props) => {
 						{transaction.user_portion ? `Change` : `Approve`}
 					</button>
 				</section>
-			</section>
-			<section className="details">
-				<div className="account">
-					{transaction.transaction_account.account_item.name}{' '}
-					{transaction.transaction_account.name}
-				</div>
-				<div className="type">{transaction.payment_channel}</div>
 			</section>
 		</Card>
 	);

@@ -22,10 +22,9 @@
     background-color: $wants;
   }
   .basics {
-    margin-bottom: 1em;
     display: grid;
-    grid-template-rows: 1.25em;
-    grid-template-columns: 1fr .75fr .5fr .5fr 5fr .25fr;
+    grid-template-rows: auto;
+    grid-template-columns: 2fr .75fr .5fr .75fr 6fr .25fr;
     grid-column-gap: 2em;
     justify-items: left;
     .name {
@@ -37,6 +36,27 @@
       &.refund {
         color: green;
       }
+    }
+  }
+  .controls > div {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    grid-auto-flow: dense;
+    .income {
+      grid-column: 1;
+    }
+    .wants {
+      grid-column: 2;
+    }
+    .needs {
+      grid-column: 3;
+    }
+    .future {
+      grid-column: 4;
+    }
+    .other {
+      grid-column: 1;
     }
   }
 }
