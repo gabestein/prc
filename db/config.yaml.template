@@ -1,2 +1,2 @@
-admin_secret: hasura-admin-secret
-endpoint: https://your.domain
+admin_secret: your-admin-secret
+endpoint: https://your-endpoint

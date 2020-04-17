@@ -8,13 +8,13 @@ const Header = () => {
 	return (
 		<>
 			<Head>
-				<title>Future</title>
+				<title>PRC Collector</title>
 				<meta name="viewport" content="initial-scale=1.0, width=device-width" />
 			</Head>
 			<header className="main">
 				<div className="logo">
-					<h1>Future {process.env.PLAID_ENV}</h1>
-					<h2>Pay your future self first.</h2>
+					<h1>PRC Collector {process.env.PLAID_ENV}</h1>
+					<h2>All the reviews.</h2>
 				</div>
 				<nav className="main">
 					<ul>

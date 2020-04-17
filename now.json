@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "alias": ["futureyou-dev.now.sh"],
+  "alias": ["prc.now.sh"],
   "build": {
     "env": {
       "AUTH0_DOMAIN": "@auth0_domain_dev",
