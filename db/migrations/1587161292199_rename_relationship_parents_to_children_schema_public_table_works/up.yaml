@@ -1,0 +1,7 @@
+- args:
+    name: parents
+    new_name: children
+    table:
+      name: works
+      schema: public
+  type: rename_relationship

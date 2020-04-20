@@ -1,0 +1,8 @@
+- args:
+    name: children
+    table:
+      name: work_relations
+      schema: public
+    using:
+      foreign_key_constraint_on: child_doi
+  type: create_object_relationship

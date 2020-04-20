@@ -1,0 +1,16 @@
+- args:
+    permission:
+      allow_aggregations: false
+      columns:
+      - child_doi
+      - parent_doi
+      - relation_type
+      - relation_id
+      computed_fields: []
+      filter: {}
+      limit: null
+    role: api
+    table:
+      name: work_relations
+      schema: public
+  type: create_select_permission

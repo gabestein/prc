@@ -1,0 +1,6 @@
+- args:
+    relationship: children
+    table:
+      name: work_relations
+      schema: public
+  type: drop_relationship

@@ -1,0 +1,41 @@
+- args:
+    role: api
+    table:
+      name: works
+      schema: public
+  type: drop_insert_permission
+- args:
+    permission:
+      check: {}
+      columns:
+      - doi
+      - indexed
+      - referenceCount
+      - publisher
+      - type
+      - publishedPrint
+      - created
+      - source
+      - title
+      - prefix
+      - author
+      - member
+      - contentCreated
+      - containerTitle
+      - deposited
+      - referencesCount
+      - relation
+      - url
+      - issue
+      - volume
+      - issn
+      - json_dump
+      localPresets:
+      - key: ""
+        value: ""
+      set: {}
+    role: api
+    table:
+      name: works
+      schema: public
+  type: create_insert_permission

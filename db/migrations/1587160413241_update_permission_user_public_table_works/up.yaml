@@ -1,0 +1,30 @@
+- args:
+    permission:
+      allow_aggregations: false
+      columns:
+      - doi
+      - indexed
+      - referenceCount
+      - publisher
+      - type
+      - publishedPrint
+      - created
+      - source
+      - title
+      - prefix
+      - author
+      - member
+      - contentCreated
+      - containerTitle
+      - deposited
+      - referencesCount
+      - relation
+      - url
+      computed_fields: []
+      filter: {}
+      limit: null
+    role: user
+    table:
+      name: works
+      schema: public
+  type: create_select_permission

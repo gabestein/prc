@@ -1,0 +1,6 @@
+- args:
+    role: api
+    table:
+      name: work_relations
+      schema: public
+  type: drop_insert_permission

@@ -47,6 +47,74 @@ export function getPortions(transactions) {
 	return portions;
 }
 
+// https://stackoverflow.com/questions/10425287/convert-dash-separated-string-to-camelcase/10425344
+function camelCase(input) {
+	return input.toLowerCase().replace(/-(.)/g, function(match, group1) {
+		return group1.toUpperCase();
+	});
+}
+
+export function flattenCrossrefMessage(message) {
+	const final = { json_dump: message };
+	// eslint-disable-next-line no-restricted-syntax
+	for (const [key, value] of Object.entries(message)) {
+		switch (key) {
+			case 'reference-count':
+			case 'published-print':
+			case 'content-created':
+			case 'alternative-id':
+			case 'journal-issue':
+			case 'issn-type':
+			case 'is-referenced-by-count':
+			case 'references-count':
+				final[camelCase(key)] = value;
+				break;
+			case 'indexed':
+			case 'created':
+			case 'deposited':
+				final[key] = value['date-time'];
+				break;
+			case 'URL':
+			case 'ISSN':
+				final[key.toLowerCase()] = value;
+				break;
+			case 'DOI':
+				final[key.toLowerCase()] = value.toLowerCase();
+				break;
+			case 'title':
+			case 'subtitle':
+				final[key] = value.join('');
+				break;
+			case 'short-title':
+			case 'container-title':
+			case 'short-container-title':
+			case 'original-title':
+				final[camelCase(key)] = value.join('');
+				break;
+			case 'publisher':
+			case 'issue':
+			case 'type':
+			case 'source':
+			case 'page':
+			case 'prefix':
+			case 'volume':
+			case 'member':
+			case 'author':
+			case 'relation':
+			case 'language':
+			case 'link':
+			case 'score':
+			case 'issued':
+				final[key] = value;
+				break;
+			default:
+				console.warn('skipping', key, '\n', value);
+				break;
+		}
+	}
+	return final;
+}
+
 export default function() {
 	return null;
 }

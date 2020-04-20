@@ -5,7 +5,6 @@ import auth0 from './auth0';
 
 // Update the GraphQL endpoint to any instance of GraphQL that you like
 const GRAPHQL_URI = process.env.GRAPHQL_URI;
-
 const getTokenFromLocalCookie = async () => {
 	try {
 		const res = await fetch('/api/token');
@@ -33,7 +32,7 @@ const getTokenFromServerCookie = async (req) => {
 export const initApolloClient = (ctx, initialState, authToken) => {
 	return new ApolloClient({
 		fetch,
-		uri: GRAPHQL_URI,
+		uri: `${GRAPHQL_URI}`,
 		cache: new InMemoryCache({
 			dataIdFromObject: (object) => {
 				const knownTypeIds = {

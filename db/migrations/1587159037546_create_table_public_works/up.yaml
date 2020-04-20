@@ -1,0 +1,14 @@
+- args:
+    cascade: false
+    read_only: false
+    sql: CREATE TABLE "public"."works"("doi" text NOT NULL, "indexed" date, "referenceCount"
+      numeric NOT NULL DEFAULT 0, "publisher" text, "type" text, "publishedPrint"
+      jsonb, "created" date, "source" text, "title" text, "prefix" text, "author"
+      jsonb, "member" numeric, "contentCreated" jsonb, "containerTitle" text, "deposited"
+      date, "referencesCount" numeric NOT NULL DEFAULT 0, "relation" jsonb, "url"
+      text, PRIMARY KEY ("doi") , UNIQUE ("doi"));
+  type: run_sql
+- args:
+    name: works
+    schema: public
+  type: add_existing_table_or_view

@@ -1,0 +1,5 @@
+- args:
+    cascade: false
+    read_only: false
+    sql: alter table "public"."works" rename column "issn" to "ISSN";
+  type: run_sql

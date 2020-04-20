@@ -1,0 +1,5 @@
+- args:
+    cascade: false
+    read_only: false
+    sql: alter table "public"."works" drop constraint "works_doi_fkey";
+  type: run_sql

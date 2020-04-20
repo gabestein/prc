@@ -1,0 +1,17 @@
+- args:
+    permission:
+      columns:
+      - child_doi
+      - parent_doi
+      - relation_type
+      - relation_id
+      filter: {}
+      localPresets:
+      - key: ""
+        value: ""
+      set: {}
+    role: api
+    table:
+      name: work_relations
+      schema: public
+  type: create_update_permission

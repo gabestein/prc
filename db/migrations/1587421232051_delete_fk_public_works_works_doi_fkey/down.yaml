@@ -1,0 +1,6 @@
+- args:
+    cascade: false
+    read_only: false
+    sql: alter table "public"."works" add foreign key ("doi") references "public"."works"("doi")
+      on update restrict on delete restrict;
+  type: run_sql

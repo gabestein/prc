@@ -1,0 +1,19 @@
+- args:
+    cascade: false
+    read_only: false
+    sql: CREATE EXTENSION IF NOT EXISTS pgcrypto;
+  type: run_sql
+- args:
+    cascade: false
+    read_only: false
+    sql: CREATE TABLE "public"."work_relations"("relation_id" uuid NOT NULL DEFAULT
+      gen_random_uuid(), "parent_doi" text NOT NULL, "child_doi" text NOT NULL, "relation_type"
+      text NOT NULL, PRIMARY KEY ("relation_id") , FOREIGN KEY ("parent_doi") REFERENCES
+      "public"."works"("doi") ON UPDATE restrict ON DELETE restrict, FOREIGN KEY ("child_doi")
+      REFERENCES "public"."works"("doi") ON UPDATE restrict ON DELETE restrict, UNIQUE
+      ("relation_id"));
+  type: run_sql
+- args:
+    name: work_relations
+    schema: public
+  type: add_existing_table_or_view

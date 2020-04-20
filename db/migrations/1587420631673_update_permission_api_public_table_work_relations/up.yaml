@@ -1,0 +1,18 @@
+- args:
+    permission:
+      allow_upsert: true
+      check: {}
+      columns:
+      - relation_id
+      - parent_doi
+      - child_doi
+      - relation_type
+      localPresets:
+      - key: ""
+        value: ""
+      set: {}
+    role: api
+    table:
+      name: work_relations
+      schema: public
+  type: create_insert_permission

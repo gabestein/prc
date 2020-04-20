@@ -1,0 +1,53 @@
+- args:
+    role: api
+    table:
+      name: works
+      schema: public
+  type: drop_update_permission
+- args:
+    permission:
+      columns:
+      - author
+      - containerTitle
+      - contentCreated
+      - created
+      - deposited
+      - doi
+      - indexed
+      - isReferencedByCount
+      - issn
+      - issnType
+      - issue
+      - issued
+      - journalIssue
+      - json_dump
+      - language
+      - link
+      - member
+      - originalTitle
+      - page
+      - prefix
+      - publishedPrint
+      - publisher
+      - referenceCount
+      - referencesCount
+      - relation
+      - score
+      - shortContainerTitle
+      - shortTitle
+      - source
+      - subtitle
+      - title
+      - type
+      - url
+      - volume
+      filter: {}
+      localPresets:
+      - key: ""
+        value: ""
+      set: {}
+    role: api
+    table:
+      name: works
+      schema: public
+  type: create_update_permission
