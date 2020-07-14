@@ -92,13 +92,9 @@ module.exports = function(client, scope, audience, context, cb) {
 1. run `npx hasura console` to make further changes, which will be saved as migrations as long as made through that interface
 
 # Deploy
-1. configure `now.json`, `.env`, `.env.build`, `.env.sandbox`, etc. with right variables
-1. `npm install --save now`
-1. `now add secrets secret_name <SECRET>` for everything in now.json and now.sandbox.json
-1. `now add secrets session_cookie_secret <SECRET>`
-1. `npm deploy:dev` for dev
-1. `npm deploy:sandbox` for dev
-1. `npm deploy:prod` for prod
+1. configure env variables on vercel.com
+1. `npm install --save vercel`
+1. TK: deployments for specific environments
 
 # DB changes
 1. Always run `npm run console` to get sandbox db console up
