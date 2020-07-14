@@ -9,9 +9,6 @@
       "BASE_URI": "@base_uri_dev",
       "SESSION_COOKIE_SECRET": "@session_cookie_secret_dev",
       "GRAPHQL_URI": "@graphql_uri_dev",
-      "PLAID_PUBLIC_KEY":"@plaid_public_key",
-      "PLAID_WEBHOOK_KEY":"@plaid_webhook_key_dev",
-      "PLAID_ENV": "development"
     }
   },
   "env": {
@@ -21,10 +18,5 @@
     "SESSION_COOKIE_SECRET": "@session_cookie_secret_dev",
     "BASE_URI": "@base_uri_dev",
     "GRAPHQL_URI": "@graphql_uri_dev",
-    "PLAID_PUBLIC_KEY":"@plaid_public_key",
-    "PLAID_CLIENT_ID": "@plaid_client_id",
-    "PLAID_SECRET": "@plaid_secret_dev",
-    "PLAID_WEBHOOK_KEY":"@plaid_webhook_key_dev",
-    "PLAID_ENV": "development"
   }
 }
