@@ -44,13 +44,13 @@
     "next-with-apollo": "^4.3.0",
     "node-sass": "^4.13.0",
     "normalize": "^0.3.1",
-    "now": "^19.1.2",
     "plaid": "^4.3.0",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-plaid-link": "^1.5.0",
-    "swr": "^0.1.16"
+    "swr": "^0.1.16",
+    "vercel": "^19.1.2"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.1.1",
