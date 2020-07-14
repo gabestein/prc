@@ -67,6 +67,8 @@ export function flattenCrossrefMessage(message) {
 			case 'issn-type':
 			case 'is-referenced-by-count':
 			case 'references-count':
+			case 'content-domain':
+			case 'group-title':
 				final[camelCase(key)] = value;
 				break;
 			case 'indexed':
@@ -105,6 +107,12 @@ export function flattenCrossrefMessage(message) {
 			case 'link':
 			case 'score':
 			case 'issued':
+			case 'reference':
+			case 'subtype':
+			case 'abstract':
+			case 'institution':
+			case 'accepted':
+			case 'posted':
 				final[key] = value;
 				break;
 			default:

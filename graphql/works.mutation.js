@@ -8,6 +8,34 @@ const WORKS_UPSERT = gql`
 		) {
 			returning {
 				doi
+				publisher
+				type
+				publishedPrint
+				created
+				source
+				title
+				author
+				containerTitle
+				url
+				link
+				shortContainerTitle
+				children {
+					relation_type
+					child {
+						doi
+						publisher
+						type
+						publishedPrint
+						created
+						source
+						title
+						author
+						containerTitle
+						url
+						link
+						shortContainerTitle
+					}
+				}
 			}
 		}
 	}

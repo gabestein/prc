@@ -1,0 +1,231 @@
+- args:
+    tables:
+    - table:
+        name: users
+        schema: public
+    - insert_permissions:
+      - permission:
+          check: {}
+          columns:
+          - relation_id
+          - parent_doi
+          - child_doi
+          - relation_type
+        role: api
+      object_relationships:
+      - name: child
+        using:
+          foreign_key_constraint_on: child_doi
+      - name: parent
+        using:
+          foreign_key_constraint_on: parent_doi
+      select_permissions:
+      - permission:
+          columns:
+          - child_doi
+          - parent_doi
+          - relation_type
+          - relation_id
+          filter: {}
+        role: api
+      - permission:
+          columns:
+          - child_doi
+          - parent_doi
+          - relation_type
+          - relation_id
+          filter: {}
+        role: user
+      table:
+        name: work_relations
+        schema: public
+      update_permissions:
+      - permission:
+          check: null
+          columns:
+          - child_doi
+          - parent_doi
+          - relation_type
+          - relation_id
+          filter: {}
+        role: api
+    - array_relationships:
+      - name: children
+        using:
+          foreign_key_constraint_on:
+            column: parent_doi
+            table:
+              name: work_relations
+              schema: public
+      - name: parents
+        using:
+          foreign_key_constraint_on:
+            column: child_doi
+            table:
+              name: work_relations
+              schema: public
+      insert_permissions:
+      - permission:
+          check: {}
+          columns:
+          - alternativeId
+          - author
+          - containerTitle
+          - contentCreated
+          - created
+          - deposited
+          - doi
+          - indexed
+          - isReferencedByCount
+          - issn
+          - issnType
+          - issue
+          - issued
+          - journalIssue
+          - json_dump
+          - language
+          - link
+          - member
+          - originalTitle
+          - page
+          - prefix
+          - publishedPrint
+          - publisher
+          - referenceCount
+          - referencesCount
+          - relation
+          - score
+          - shortContainerTitle
+          - shortTitle
+          - source
+          - subtitle
+          - title
+          - type
+          - url
+          - volume
+        role: api
+      select_permissions:
+      - permission:
+          columns:
+          - alternativeId
+          - author
+          - containerTitle
+          - contentCreated
+          - created
+          - deposited
+          - doi
+          - indexed
+          - isReferencedByCount
+          - issn
+          - issnType
+          - issue
+          - issued
+          - journalIssue
+          - json_dump
+          - language
+          - link
+          - member
+          - originalTitle
+          - page
+          - prefix
+          - publishedPrint
+          - publisher
+          - referenceCount
+          - referencesCount
+          - relation
+          - score
+          - shortContainerTitle
+          - shortTitle
+          - source
+          - subtitle
+          - title
+          - type
+          - url
+          - volume
+          filter: {}
+        role: api
+      - permission:
+          columns:
+          - alternativeId
+          - author
+          - containerTitle
+          - contentCreated
+          - created
+          - deposited
+          - doi
+          - indexed
+          - isReferencedByCount
+          - issn
+          - issnType
+          - issue
+          - issued
+          - journalIssue
+          - json_dump
+          - language
+          - link
+          - member
+          - originalTitle
+          - page
+          - prefix
+          - publishedPrint
+          - publisher
+          - referenceCount
+          - referencesCount
+          - relation
+          - score
+          - shortContainerTitle
+          - shortTitle
+          - source
+          - subtitle
+          - title
+          - type
+          - url
+          - volume
+          filter: {}
+        role: user
+      table:
+        name: works
+        schema: public
+      update_permissions:
+      - permission:
+          check: null
+          columns:
+          - alternativeId
+          - author
+          - containerTitle
+          - contentCreated
+          - created
+          - deposited
+          - doi
+          - indexed
+          - isReferencedByCount
+          - issn
+          - issnType
+          - issue
+          - issued
+          - journalIssue
+          - json_dump
+          - language
+          - link
+          - member
+          - originalTitle
+          - page
+          - prefix
+          - publishedPrint
+          - publisher
+          - referenceCount
+          - referencesCount
+          - relation
+          - score
+          - shortContainerTitle
+          - shortTitle
+          - source
+          - subtitle
+          - title
+          - type
+          - url
+          - volume
+          filter: {}
+        role: api
+    version: 2
+  type: replace_metadata

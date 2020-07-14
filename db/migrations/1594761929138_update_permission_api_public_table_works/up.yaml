@@ -1,0 +1,62 @@
+- args:
+    role: api
+    table:
+      name: works
+      schema: public
+  type: drop_select_permission
+- args:
+    permission:
+      allow_aggregations: false
+      columns:
+      - created
+      - deposited
+      - indexed
+      - accepted
+      - alternativeId
+      - author
+      - contentCreated
+      - contentDomain
+      - institution
+      - issn
+      - issnType
+      - issued
+      - journalIssue
+      - json_dump
+      - link
+      - posted
+      - publishedPrint
+      - reference
+      - relation
+      - isReferencedByCount
+      - member
+      - referenceCount
+      - referencesCount
+      - score
+      - abstract
+      - containerTitle
+      - doi
+      - groupTitle
+      - issue
+      - language
+      - originalTitle
+      - page
+      - prefix
+      - publisher
+      - shortContainerTitle
+      - shortTitle
+      - source
+      - subtitle
+      - subtype
+      - title
+      - type
+      - url
+      - volume
+      - created_at
+      - updated_at
+      computed_fields: []
+      filter: {}
+    role: api
+    table:
+      name: works
+      schema: public
+  type: create_select_permission
