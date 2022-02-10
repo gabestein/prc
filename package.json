@@ -42,7 +42,7 @@
     "next": "^9.1.7",
     "next-compose-plugins": "^2.2.0",
     "next-with-apollo": "^4.3.0",
-    "node-sass": "^4.13.0",
+    "node-sass": "^7.0.0",
     "normalize": "^0.3.1",
     "plaid": "^4.3.0",
     "prop-types": "^15.7.2",
